@@ -6,33 +6,39 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerInput))]
 
-public class TwinStickMovement : MonoBehaviour
+public class Player_Controls : MonoBehaviour
 {
-    [SerializeField] private float playerSpeed = 5f;
+    // Public variables
+    public AudioClip turnOnSound;
+    public AudioClip turnOffSound;
+
+    // Private variables
+    [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float gravityValue = -9.81f;
     [SerializeField] private float controllerDeadzone = 0.1f;
     [SerializeField] private float gamepadRotateSmoothing = 1000f;
 
     [SerializeField] private bool isGamepad;
 
-    private CharacterController controller;
-
+    
     private Vector2 movement;
     private Vector2 aim;
-
     private Vector3 playerVelocity;
-
+    
+    private CharacterController controller;
     private PlayerControls playerControls;
     private PlayerInput playerInput;
+ 
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
         playerControls = new PlayerControls();
         playerInput = GetComponent<PlayerInput>();
-        
+
     }
 
+ 
     private void OnEnable()
     {
         playerControls.Enable();
@@ -58,8 +64,14 @@ public class TwinStickMovement : MonoBehaviour
 
     void HandleMovement()
     {
+        var running = playerInput.actions["Run"];
+        if (running.IsPressed())
+        { moveSpeed = 10.0f; }
+        else
+        { moveSpeed = 5.0f; }
+
         Vector3 move = new Vector3(movement.x, 0, movement.y);
-        controller.Move(move * Time.deltaTime * playerSpeed);
+        controller.Move(move * Time.deltaTime * moveSpeed);
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
@@ -100,7 +112,7 @@ public class TwinStickMovement : MonoBehaviour
         transform.LookAt(heightCorrectedPoint);
     }
 
-    public void OnDeviceChange (PlayerInput pi)
+    public void OnDeviceChange(PlayerInput pi)
     {
         isGamepad = pi.currentControlScheme.Equals("Gamepad") ? true : false;
     }

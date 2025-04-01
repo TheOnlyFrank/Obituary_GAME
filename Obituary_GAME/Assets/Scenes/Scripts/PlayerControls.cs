@@ -56,9 +56,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Jump"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""5442b673-30fd-4337-b7e5-830f14ae612e"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector3"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -92,7 +92,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Flashlight"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""93bd920c-b612-45f9-bdc4-0065ba890019"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -101,7 +101,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Drag"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""096ecd60-17e6-4ce8-b2d2-38277a6c9462"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -119,7 +119,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Run"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""61bc544b-1d8b-461f-9462-55e3164623ef"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
