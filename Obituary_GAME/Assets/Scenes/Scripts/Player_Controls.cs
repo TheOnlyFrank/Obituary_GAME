@@ -116,4 +116,15 @@ public class Player_Controls : MonoBehaviour
     {
         isGamepad = pi.currentControlScheme.Equals("Gamepad") ? true : false;
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.tag == "auto_Door")
+        {
+            if(other.GetComponent<Auto_Door>().moving_Out == false)
+            {
+                other.GetComponent<Auto_Door>().moving_Out = true; 
+            }
+        }
+    }
 }

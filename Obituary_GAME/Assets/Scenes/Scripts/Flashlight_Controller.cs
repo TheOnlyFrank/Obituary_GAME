@@ -19,7 +19,7 @@ public class Flashlight_Controller : MonoBehaviour
     private PlayerControls playerControls;
     private PlayerInput playerInput;
     private CharacterController controller;
-    private inputAction flashlight;
+ //   private inputAction flashlight;
 
 
     private void Awake()
@@ -66,15 +66,15 @@ public class Flashlight_Controller : MonoBehaviour
     private void Update()
     {
 
-        HandleInput();
+ //       HandleInput();
         Flashlight_Toggle();
     }
 
-    void HandleInput()
-    {
-        flashlight = playerControls.Controls.Flashlight.ReadValueAsObject(); 
+ //   void HandleInput()
+ //   {
+ //       flashlight = playerControls.Controls.Flashlight.ReadValueAsObject(); 
             //What is the type that needs to go in, or replace, the "ReadValue()" element???? It's not a Vector2, float, or bool!?!?!?!?
-    }
+ //   }
 
     void Flashlight_Toggle()
     {
