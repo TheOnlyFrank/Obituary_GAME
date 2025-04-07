@@ -16,15 +16,15 @@ public class Auto_Door : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startPos = transform.position;  
+        startPos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(moving)
+        if (moving)
         {
-            if(opening)
+            if (opening)
             {
                 moveDoor(endPos);
             }
@@ -38,16 +38,16 @@ public class Auto_Door : MonoBehaviour
     void moveDoor(Vector3 goalPos)
     {
         float dist = Vector3.Distance(transform.position, goalPos);
-        if(dist > .1f)
+        if (dist > .1f)
         {
             transform.position = Vector3.Lerp(transform.position, goalPos, speed * Time.deltaTime);
         }
         else
         {
-            if(opening)
+            if (opening)
             {
                 delay += Time.deltaTime;
-                if(delay > 3.0f)
+                if (delay > 3.0f)
                 {
                     opening = false;
                 }

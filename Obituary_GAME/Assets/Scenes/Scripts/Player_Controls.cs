@@ -28,17 +28,32 @@ public class Player_Controls : MonoBehaviour
     private CharacterController controller;
     private PlayerControls playerControls;
     private PlayerInput playerInput;
- 
+    private Light flashlight;
+    private AudioSource audioSource;
+
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
         playerControls = new PlayerControls();
         playerInput = GetComponent<PlayerInput>();
+        flashlight = GetComponent<Light>();
+        flashlight.enabled = false;
 
     }
 
- 
+    void Start()
+    {
+        // Get or add AudioSource component to the same GameObject
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+        }
+
+    }
+
     private void OnEnable()
     {
         playerControls.Enable();
@@ -54,6 +69,7 @@ public class Player_Controls : MonoBehaviour
         HandleInput();
         HandleMovement();
         HandleRotation();
+        HandleFlashlight();
     }
 
     void HandleInput()
@@ -106,6 +122,23 @@ public class Player_Controls : MonoBehaviour
         }
     }
 
+    void HandleFlashlight()
+    {
+        if (playerInput.actions["Flashlight"].WasPressedThisFrame())
+        {
+            if (flashlight.enabled == false)
+            {
+                flashlight.enabled = true;
+                PlayAudioEffect(turnOnSound);
+            }
+            else
+            {
+                flashlight.enabled = false;
+                PlayAudioEffect(turnOffSound);
+            }
+        }
+    }
+
     private void LookAt(Vector3 lookPoint)
     {
         Vector3 heightCorrectedPoint = new Vector3(lookPoint.x, transform.position.y, lookPoint.z);
@@ -117,13 +150,22 @@ public class Player_Controls : MonoBehaviour
         isGamepad = pi.currentControlScheme.Equals("Gamepad") ? true : false;
     }
 
+    private void PlayAudioEffect(AudioClip clip)
+    {
+        if (clip != null)
+        {
+            audioSource.clip = clip;
+            audioSource.Play();
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
-        if(other.tag == "auto_Door")
+        if (other.tag == "Auto_Door")
         {
-            if(other.GetComponent<Auto_Door>().moving_Out == false)
+            if (other.GetComponent<Auto_Door>().moving_Out == false)
             {
-                other.GetComponent<Auto_Door>().moving_Out = true; 
+                other.GetComponent<Auto_Door>().moving_Out = true;
             }
         }
     }
