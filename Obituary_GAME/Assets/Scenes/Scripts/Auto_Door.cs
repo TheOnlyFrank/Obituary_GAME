@@ -11,7 +11,7 @@ public class Auto_Door : MonoBehaviour
     private bool moving = false;
     private bool opening = true;
     private Vector3 startPos;
-    private float delay = 0.0f;
+    public float delay = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -47,9 +47,10 @@ public class Auto_Door : MonoBehaviour
             if (opening)
             {
                 delay += Time.deltaTime;
-                if (delay > 3.0f)
+                if (delay > 5.0f)
                 {
                     opening = false;
+                    delay = 0.0f;
                 }
             }
             else
