@@ -11,6 +11,8 @@ public class Player_Controls : MonoBehaviour
     // Public variables
     public AudioClip turnOnSound;
     public AudioClip turnOffSound;
+    public AudioClip accessDeniedSound;
+    public Inventory_Manager inventory;
 
     // Private variables
     [SerializeField] private float moveSpeed = 5f;
@@ -30,6 +32,7 @@ public class Player_Controls : MonoBehaviour
     private PlayerInput playerInput;
     private Light flashlight;
     private AudioSource audioSource;
+    
 
 
     private void Awake()
@@ -39,7 +42,6 @@ public class Player_Controls : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         flashlight = GetComponent<Light>();
         flashlight.enabled = false;
-
     }
 
     void Start()
@@ -124,17 +126,20 @@ public class Player_Controls : MonoBehaviour
 
     void HandleFlashlight()
     {
-        if (playerInput.actions["Flashlight"].WasPressedThisFrame())
+        if (inventory.has_Flashlight)
         {
-            if (flashlight.enabled == false)
+            if (playerInput.actions["Flashlight"].WasPressedThisFrame())
             {
-                flashlight.enabled = true;
-                PlayAudioEffect(turnOnSound);
-            }
-            else
-            {
-                flashlight.enabled = false;
-                PlayAudioEffect(turnOffSound);
+                if (flashlight.enabled == false)
+                {
+                    flashlight.enabled = true;
+                    PlayAudioEffect(turnOnSound);
+                }
+                else
+                {
+                    flashlight.enabled = false;
+                    PlayAudioEffect(turnOffSound);
+                }
             }
         }
     }
@@ -159,7 +164,7 @@ public class Player_Controls : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Auto_Door")
         {
@@ -168,5 +173,41 @@ public class Player_Controls : MonoBehaviour
                 other.GetComponent<Auto_Door>().moving_Out = true;
             }
         }
+        else
+        {
+            if (other.tag == "Locked_Door")
+            {
+                if (inventory.has_Key)
+                {
+                    if (other.GetComponent<Locked_Door>().moving_Out == false)
+                    {
+                        other.GetComponent<Locked_Door>().moving_Out = true;
+                    }
+                }
+                else
+                {
+                    PlayAudioEffect(accessDeniedSound);
+                }
+            }
+            else
+            {
+                if (other.tag == "Key")
+                {
+                    inventory.has_Key = true;
+                    Debug.Log("You got the key!");
+                    Destroy(other.gameObject);
+                }
+                else
+                {
+                    if (other.tag == "Flashlight")
+                    {
+                        inventory.has_Flashlight = true;
+                        Debug.Log("You got the flashlight!");
+                        Destroy(other.gameObject);
+                    }
+                }
+            }
+        }
+         
     }
 }
