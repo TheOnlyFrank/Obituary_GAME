@@ -6,13 +6,13 @@ public class Inventory_Manager : MonoBehaviour
 {
 
     public bool has_Key = false;
-
-    public bool has_Gun = false;
+    public bool has_Pistol = false;
+    public bool has_Shotgun = false;
     public bool has_Melee = false;
     public bool has_Flashlight = false;
 
-    public int ammo = 10;
-
+    public int pistol_Ammo = 0;
+    public int shotgun_Ammo = 0;
     public int health_Packs = 0;
 
 
@@ -20,7 +20,8 @@ public class Inventory_Manager : MonoBehaviour
     void Start()
     {
         has_Key = false;
-        has_Gun = false;
+        has_Pistol = false;
+        has_Shotgun = false;
         has_Melee = false;
         has_Flashlight = false;
 
