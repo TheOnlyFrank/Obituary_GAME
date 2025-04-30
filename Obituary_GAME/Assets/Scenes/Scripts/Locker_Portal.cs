@@ -13,9 +13,9 @@ public class Locker_Portal : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-         //   playerg.SetActive(false);
-            Player.transform.position = teleportTarget.transform.postion;
-            //   playerg.SetActive(true);
+            Player.SetActive(false);
+            Player.transform.position = teleportTarget.transform.position;
+            Player.SetActive(true);
             Physics.SyncTransforms();
         }
     }
