@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Auto_Door : MonoBehaviour
 {
-
+    
     public Vector3 endPos;
     public float speed = 1.0f;
 
@@ -47,7 +47,7 @@ public class Auto_Door : MonoBehaviour
             if (opening)
             {
                 delay += Time.deltaTime;
-                if (delay > 5.0f)
+                if (delay > 3.0f)
                 {
                     opening = false;
                     delay = 0.0f;
