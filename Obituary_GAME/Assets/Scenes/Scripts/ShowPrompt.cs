@@ -6,15 +6,15 @@ using UnityEngine.UI;
 
 public class ShowPrompt : MonoBehaviour
 {
-    public Canvas EPromptCanvas;
-
-    void OnTriggerEnter(Collider JohnEnteringWireTrigger)
+    /// <summary>
+    /// OnTriggerEnter is called when the Collider other enters the trigger.
+    /// </summary>
+    /// <param name="other">The other Collider involved in this collision.</param>
+    void OnTriggerEnter(Collider other)
     {
-        if(JohnEnteringWireTrigger.tag == "Player")
+        if(other.tag == "Player")
         {
-            Debug.Log("Player is by Wire Box");
-            //show the E Prompt Canvas
-            EPromptCanvas.enabled = true;
+            Debug.Log("Player has entered Collider");
         }
     }
 }
