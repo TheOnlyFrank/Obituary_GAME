@@ -1,20 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//Get access to Unitiys UI System
+//Get access to Unitys UI System
 using UnityEngine.UI;
 
 public class ShowPrompt : MonoBehaviour
 {
-    /// <summary>
-    /// OnTriggerEnter is called when the Collider other enters the trigger.
-    /// </summary>
-    /// <param name="other">The other Collider involved in this collision.</param>
-    void OnTriggerEnter(Collider other)
+    public GameObject canvas;
+
+    private void Start() 
     {
-        if(other.tag == "Player")
+        canvas.SetActive(false);
+    }
+    void OnTriggerEnter(Collider other) 
+    {
+        if(other.CompareTag("Player"))
         {
-            Debug.Log("Player has entered Collider");
+            canvas.SetActive(true);
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            canvas.SetActive(false);
         }
     }
 }
