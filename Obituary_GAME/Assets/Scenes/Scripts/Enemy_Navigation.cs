@@ -10,9 +10,15 @@ public class Enemy_Navigation : MonoBehaviour
 
     public float shootRange = 4f; 
     public float meleeRange = 1.5f;
-    public float rotationSpeed = 10f;
+    public float rotationSpeed = 100f;
 
-    public NavMeshAgent navAgent; 
+    public NavMeshAgent navAgent;
+    private float initialNavSpeed;
+
+    void Start()
+    {
+        initialNavSpeed = navAgent.speed;
+    }
 
     
     void Update()
@@ -28,6 +34,10 @@ public class Enemy_Navigation : MonoBehaviour
         {
             navAgent.speed = 0f; 
             RotateTowards(goal);
+        }
+        else
+        {
+            navAgent.speed = initialNavSpeed;
         }
         
          //Rotates enemy toward player if within Nav Mesh Agent's stopping distance, so that enemies don't get stuck
@@ -59,7 +69,7 @@ public class Enemy_Navigation : MonoBehaviour
    private void RotateTowards(Transform goal)
    {
        transform.LookAt(goal.transform);
-       Vector3 direction = (goal.position - transform.position).normalized;
+       Vector3 direction = (goal.position - transform.position);
        Quaternion lookRotation = Quaternion.LookRotation(direction);
        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
    }
