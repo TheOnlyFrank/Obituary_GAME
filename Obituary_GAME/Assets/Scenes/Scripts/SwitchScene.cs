@@ -2,17 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+
+//[RequireComponent(typeof(PlayerInput))]
 
 public class SwitchScene : MonoBehaviour
-{   
-    private void OnTriggerEnter(Collider other) 
+{
+
+    //   public GameObject player;
+    //   private PlayerInput playerInput;
+    //   private PlayerControls playerControls;
+    //   private CharacterController controller;
+
+
+    //   private void OnTriggerEnter(Collider other) 
+    //   {
+    //       controller = player.GetComponent<CharacterController>();
+    //       playerControls = new PlayerControls();
+    //       playerInput = player.GetComponent<PlayerInput>();
+    //
+    //       if (other.tag == "Player")
+    //       {
+    //           Debug.Log("Collider entered"); 
+    //           if (playerInput.actions["Interact"].WasPressedThisFrame())
+    //           {
+    //               Debug.Log("Interact button pressed");
+    //               SceneManager.LoadScene("Wire_Puzzle", LoadSceneMode.Additive);
+    //           }
+    //       }
+    //   }
+    public void ChangeScene()
     {
-        if(other.CompareTag("Player"))
-        {
-            if(Input.GetKeyUp(KeyCode.E))
-            {
-                SceneManager.LoadScene(1);
-            }
-        }
+        SceneManager.LoadScene("Wire_Puzzle", LoadSceneMode.Additive);
     }
 }

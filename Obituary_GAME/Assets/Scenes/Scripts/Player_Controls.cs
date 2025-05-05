@@ -14,6 +14,7 @@ public class Player_Controls : MonoBehaviour
     public AudioClip turnOffSound;
     public AudioClip accessDeniedSound;
     public Inventory_Manager inventory;
+    public SwitchScene switchScene;
 
     // Private variables
     [SerializeField] private float moveSpeed = 5f;
@@ -23,17 +24,17 @@ public class Player_Controls : MonoBehaviour
 
     [SerializeField] private bool isGamepad;
 
-    
+
     private Vector2 movement;
     private Vector2 aim;
     private Vector3 playerVelocity;
-    
+
     private CharacterController controller;
     private PlayerControls playerControls;
     private PlayerInput playerInput;
     private Light flashlight;
     private AudioSource audioSource;
-    
+
 
 
     private void Awake()
@@ -209,6 +210,16 @@ public class Player_Controls : MonoBehaviour
                 }
             }
         }
-         
+
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if ((other.tag == "Wire_Box") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+        {
+            Debug.Log("Interact button pressed");
+            //switchScene.ChangeScene();
+            SceneManager.LoadScene("Wire_Puzzle", LoadSceneMode.Additive);
+        }
     }
 }

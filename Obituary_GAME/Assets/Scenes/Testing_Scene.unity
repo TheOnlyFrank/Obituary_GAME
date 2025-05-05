@@ -2376,6 +2376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endPos: {x: -6, y: 1.403995, z: 1.98}
+  startPos: {x: 0, y: 0, z: 0}
   speed: 3
   delay: 0
 --- !u!65 &1123013334
@@ -2790,6 +2791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endPos: {x: 0.1150232, y: 1.18, z: 0.1}
+  startPos: {x: 0, y: 0, z: 0}
   speed: 1
   delay: 0
 --- !u!208 &1336616644
@@ -3326,6 +3328,7 @@ MonoBehaviour:
   turnOffSound: {fileID: 8300000, guid: bc020be7f1598594f888d48a97ed7173, type: 3}
   accessDeniedSound: {fileID: 8300000, guid: 320877e487cc14c46b9dd09d7ba5ef84, type: 3}
   inventory: {fileID: 1464411666}
+  switchScene: {fileID: 0}
   moveSpeed: 5
   gravityValue: -9.81
   controllerDeadzone: 0.1
@@ -3584,7 +3587,7 @@ GameObject:
   - component: {fileID: 1691210803}
   m_Layer: 0
   m_Name: Wire_Box
-  m_TagString: Untagged
+  m_TagString: Wire_Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
