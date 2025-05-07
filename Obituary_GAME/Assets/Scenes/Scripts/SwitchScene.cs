@@ -33,6 +33,6 @@ public class SwitchScene : MonoBehaviour
     //   }
     public void ChangeScene()
     {
-        SceneManager.LoadScene("Wire_Puzzle", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Wire_Puzzle", LoadSceneMode.Single);
     }
 }

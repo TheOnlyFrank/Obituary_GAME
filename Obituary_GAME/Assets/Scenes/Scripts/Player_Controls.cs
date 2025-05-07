@@ -219,7 +219,7 @@ public class Player_Controls : MonoBehaviour
         {
             Debug.Log("Interact button pressed");
             //switchScene.ChangeScene();
-            SceneManager.LoadScene("Wire_Puzzle", LoadSceneMode.Additive);
+            SceneManager.LoadScene("Wire_Puzzle", LoadSceneMode.Single);
         }
     }
 }
