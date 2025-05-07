@@ -17,6 +17,7 @@ public class Player_Health : MonoBehaviour
         {
             player_Health = player_Health - 1;
             Debug.Log(player_Health);
+            Debug.Log("Ouch!");
         }
     }
 

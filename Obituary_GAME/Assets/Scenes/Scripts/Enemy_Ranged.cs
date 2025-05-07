@@ -10,9 +10,9 @@ public class Enemy_Ranged : MonoBehaviour
 
     public float launchForce;
     public float timeBetweenAttacks;
-    //public float rotationSpeed;
+    public float rotationSpeed;
     private float timeSinceLastShot;
- //   private float firingAngleThreshold = 5f;
+    private float firingAngleThreshold = 5f;
 
     //private bool rotateBack;
 
@@ -30,23 +30,25 @@ public class Enemy_Ranged : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-         //   Vector3 targetPosition = new Vector3(other.transform.position.x, cannon.transform.position.y, other.transform.position.z);
-         //   Quaternion targetRotation = Quaternion.LookRotation(targetPosition - cannon.transform.position);
+               Vector3 targetPosition = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
+               Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
 
-        //    targetRotation *= Quaternion.Euler(0, 180, 0);
+                targetRotation *= Quaternion.Euler(0, 0, 0);
 
             // Gradually rotate towards the player
-         //   cannon.transform.rotation = Quaternion.RotateTowards(cannon.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+               transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
 
-         //   float angle = Quaternion.Angle(cannon.transform.rotation, targetRotation);
+               float angle = Quaternion.Angle(transform.rotation, targetRotation);
 
-         //   // Fire if within angle threshold
-         //   if (angle < firingAngleThreshold && timeSinceLastShot >= timeBetweenAttacks)
-         //   {
+            //   // Fire if within angle threshold
+               if (angle < firingAngleThreshold && timeSinceLastShot >= timeBetweenAttacks)
+            //if (timeSinceLastShot >= timeBetweenAttacks)
+                {
                 FireCannon();
                 timeSinceLastShot = 0f;
-         //   }
+                }
+
         }
     }
 
@@ -92,6 +94,6 @@ public class Enemy_Ranged : MonoBehaviour
             rb.AddForce(cannon.transform.forward * launchForce); // Note the negative sign, since we rotated the cannon 180 degrees
         }
 
-        Destroy(newCannonBall, 1f);
+        Destroy(newCannonBall, 10f);
     }
 }
