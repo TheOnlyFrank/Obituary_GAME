@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class Player_Health : MonoBehaviour
 {
-    public int player_Health;
+    public int playerHealth;
  
  
 
@@ -15,8 +16,9 @@ public class Player_Health : MonoBehaviour
     {
         if (other.CompareTag("Ranged") || other.CompareTag("Melee"))
         {
-            player_Health = player_Health - 1;
-            Debug.Log(player_Health);
+            playerHealth = playerHealth - 1;
+            Debug.Log(playerHealth);
+            Debug.Log("Ouch!");
         }
     }
 
@@ -25,6 +27,12 @@ public class Player_Health : MonoBehaviour
     // Keep player's on-screen health updated
     public void Update()
     {
- 
+    if (playerHealth <= 0)
+        {
+            Debug.Log("You Died");
+            Destroy(gameObject);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+
+        }
     }
 }

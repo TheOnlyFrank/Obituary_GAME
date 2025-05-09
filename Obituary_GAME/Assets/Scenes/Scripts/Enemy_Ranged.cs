@@ -10,9 +10,9 @@ public class Enemy_Ranged : MonoBehaviour
 
     public float launchForce;
     public float timeBetweenAttacks;
-    //public float rotationSpeed;
+    public float rotationSpeed;
     private float timeSinceLastShot;
- //   private float firingAngleThreshold = 5f;
+    private float firingAngleThreshold = 5f;
 
     //private bool rotateBack;
 
@@ -30,23 +30,25 @@ public class Enemy_Ranged : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-         //   Vector3 targetPosition = new Vector3(other.transform.position.x, cannon.transform.position.y, other.transform.position.z);
-         //   Quaternion targetRotation = Quaternion.LookRotation(targetPosition - cannon.transform.position);
+               Vector3 targetPosition = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
+               Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
 
-        //    targetRotation *= Quaternion.Euler(0, 180, 0);
+                targetRotation *= Quaternion.Euler(0, 0, 0);
 
             // Gradually rotate towards the player
-         //   cannon.transform.rotation = Quaternion.RotateTowards(cannon.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+               transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
 
-         //   float angle = Quaternion.Angle(cannon.transform.rotation, targetRotation);
+               float angle = Quaternion.Angle(transform.rotation, targetRotation);
 
-         //   // Fire if within angle threshold
-         //   if (angle < firingAngleThreshold && timeSinceLastShot >= timeBetweenAttacks)
-         //   {
+            //   // Fire if within angle threshold
+               if (angle < firingAngleThreshold && timeSinceLastShot >= timeBetweenAttacks)
+            //if (timeSinceLastShot >= timeBetweenAttacks)
+                {
                 FireCannon();
                 timeSinceLastShot = 0f;
-         //   }
+                }
+
         }
     }
 
@@ -67,9 +69,9 @@ public class Enemy_Ranged : MonoBehaviour
    //     if (rotateBack)
    //     {
    //         Quaternion forward = Quaternion.Euler(0, 180, 0);
-   //         if (Quaternion.Angle(cannon.transform.localRotation, forward) > 0.1f)
+   //         if (Quaternion.Angle(transform.localRotation, forward) > 0.1f)
    //         {
-   //             cannon.transform.localRotation = Quaternion.RotateTowards(cannon.transform.localRotation, forward, rotationSpeed * Time.deltaTime);
+   //             transform.localRotation = Quaternion.RotateTowards(transform.localRotation, forward, rotationSpeed * Time.deltaTime);
    //         }
    //         else
    //         {
@@ -89,9 +91,9 @@ public class Enemy_Ranged : MonoBehaviour
         Rigidbody rb = newCannonBall.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.AddForce(cannon.transform.forward * launchForce); // Note the negative sign, since we rotated the cannon 180 degrees
+            rb.AddForce(transform.forward * launchForce); 
         }
 
-        Destroy(newCannonBall, 1f);
+        Destroy(newCannonBall, 3f);
     }
 }

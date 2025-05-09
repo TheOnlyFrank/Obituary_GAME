@@ -6,18 +6,19 @@ public class Auto_Door : MonoBehaviour
 {
     
     public Vector3 endPos;
+    public Vector3 startPos;
     public float speed = 1.0f;
 
     private bool moving = false;
     private bool opening = true;
-    private Vector3 startPos;
+ //   private Vector3 startPos;
     public float delay = 0.0f;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        startPos = transform.position;
-    }
+ //   void Start()
+ //   {
+ //       startPos = transform.position;
+ //   }
 
     // Update is called once per frame
     void Update()

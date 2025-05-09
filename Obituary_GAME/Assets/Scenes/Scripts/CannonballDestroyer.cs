@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class CannonballDestroyer : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        if (other.tag != "Enemy")
+        {
+            Destroy(gameObject);
+        }
     }
 }

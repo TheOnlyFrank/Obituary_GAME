@@ -8,6 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Menu_Scene.unity
+    guid: 1215cf808f05e0649bf8445312fee87b
+  - enabled: 1
+    path: Assets/Scenes/Game_Scene.unity
+    guid: 6fd0c302fdc700f408bbeb14281971e5
+  - enabled: 1
+    path: Assets/Scenes/Wire_Puzzle.unity
+    guid: 6954c33694728a3428c4df04304cedcf
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9f23c13bf3fb36e49a83d4b0f0c07ed8,
       type: 2}

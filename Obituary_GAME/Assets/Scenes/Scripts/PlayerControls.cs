@@ -64,7 +64,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Use"",
+                    ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""4e269362-01fb-482e-92d2-ba609c43355f"",
                     ""expectedControlType"": ""Button"",
@@ -285,7 +285,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Use"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -296,7 +296,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KBM"",
-                    ""action"": ""Use"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -515,7 +515,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Controls_Aim = m_Controls.FindAction("Aim", throwIfNotFound: true);
         m_Controls_Shoot = m_Controls.FindAction("Shoot", throwIfNotFound: true);
         m_Controls_Jump = m_Controls.FindAction("Jump", throwIfNotFound: true);
-        m_Controls_Use = m_Controls.FindAction("Use", throwIfNotFound: true);
+        m_Controls_Interact = m_Controls.FindAction("Interact", throwIfNotFound: true);
         m_Controls_Melee = m_Controls.FindAction("Melee", throwIfNotFound: true);
         m_Controls_Reload_Weapon = m_Controls.FindAction("Reload_Weapon", throwIfNotFound: true);
         m_Controls_Flashlight = m_Controls.FindAction("Flashlight", throwIfNotFound: true);
@@ -587,7 +587,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Controls_Aim;
     private readonly InputAction m_Controls_Shoot;
     private readonly InputAction m_Controls_Jump;
-    private readonly InputAction m_Controls_Use;
+    private readonly InputAction m_Controls_Interact;
     private readonly InputAction m_Controls_Melee;
     private readonly InputAction m_Controls_Reload_Weapon;
     private readonly InputAction m_Controls_Flashlight;
@@ -604,7 +604,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Aim => m_Wrapper.m_Controls_Aim;
         public InputAction @Shoot => m_Wrapper.m_Controls_Shoot;
         public InputAction @Jump => m_Wrapper.m_Controls_Jump;
-        public InputAction @Use => m_Wrapper.m_Controls_Use;
+        public InputAction @Interact => m_Wrapper.m_Controls_Interact;
         public InputAction @Melee => m_Wrapper.m_Controls_Melee;
         public InputAction @Reload_Weapon => m_Wrapper.m_Controls_Reload_Weapon;
         public InputAction @Flashlight => m_Wrapper.m_Controls_Flashlight;
@@ -634,9 +634,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnJump;
-                @Use.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnUse;
-                @Use.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnUse;
-                @Use.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnUse;
+                @Interact.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnInteract;
                 @Melee.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnMelee;
                 @Melee.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnMelee;
                 @Melee.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnMelee;
@@ -677,9 +677,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @Use.started += instance.OnUse;
-                @Use.performed += instance.OnUse;
-                @Use.canceled += instance.OnUse;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
                 @Melee.started += instance.OnMelee;
                 @Melee.performed += instance.OnMelee;
                 @Melee.canceled += instance.OnMelee;
@@ -732,7 +732,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnAim(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnUse(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
         void OnMelee(InputAction.CallbackContext context);
         void OnReload_Weapon(InputAction.CallbackContext context);
         void OnFlashlight(InputAction.CallbackContext context);
