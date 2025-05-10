@@ -45,7 +45,7 @@ public class Enemy_Ranged : MonoBehaviour
                if (angle < firingAngleThreshold && timeSinceLastShot >= timeBetweenAttacks)
             //if (timeSinceLastShot >= timeBetweenAttacks)
                 {
-                FireCannon();
+                fireCannon();
                 timeSinceLastShot = 0f;
                 }
 
@@ -82,7 +82,7 @@ public class Enemy_Ranged : MonoBehaviour
 
 
 
-    private void FireCannon()
+    private void fireCannon()
     {
         // Instantiate the cannonball at the stationary ball's position
         GameObject newCannonBall = Instantiate(cannonBallPrefab, stationaryCannonBall.position, Quaternion.identity);

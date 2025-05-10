@@ -11,8 +11,6 @@ public class Locked_Door : MonoBehaviour
 
     private bool moving = false;
     private bool opening = true;
- //   private bool closing = false;
- //   private Vector3 startPos;
     public float delay = 0.0f;
 
     [SerializeField] bool isLocked;
