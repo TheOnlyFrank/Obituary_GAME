@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Locked_Door
+  - Ranged
+  - Blue_Wire
+  - Red_Wire
+  - Yellow_Wire
+  - Green_Wire
   layers:
   - Default
   - TransparentFX
@@ -11,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Wire_Puzzle
   - 
   - 
   - 
