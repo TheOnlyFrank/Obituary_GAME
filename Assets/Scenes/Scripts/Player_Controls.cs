@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerInput))]
 
-public class Player_Controls : MonoBehaviour
+public class Player_Controls : MonoBehaviour//, I_Data_Persistence
 {
     // Public variables
     public AudioClip turnOnSound;
@@ -74,6 +74,7 @@ public class Player_Controls : MonoBehaviour
         HandleMovement();
         HandleRotation();
         HandleFlashlight();
+        OpenInventory();
     }
 
     void HandleInput()
@@ -143,6 +144,15 @@ public class Player_Controls : MonoBehaviour
                     PlayAudioEffect(turnOffSound);
                 }
             }
+        }
+    }
+
+    void OpenInventory()
+    {
+        if (playerInput.actions["Inventory_Menu"].WasPressedThisFrame())
+        {
+            //save game call goes here
+            SceneManager.LoadScene("Inventory", LoadSceneMode.Single);
         }
     }
 
@@ -219,7 +229,18 @@ public class Player_Controls : MonoBehaviour
         {
             Debug.Log("Interact button pressed");
             //switchScene.ChangeScene();
+            //SaveData();
             SceneManager.LoadScene("Wire_Puzzle", LoadSceneMode.Single);
         }
+    }
+
+    public void LoadData(Game_Data data)
+    {
+        this.transform.position = data.playerPosition;
+    }
+
+    public void SaveData(ref Game_Data data)
+    {
+        data.playerPosition = this.transform.position;
     }
 }

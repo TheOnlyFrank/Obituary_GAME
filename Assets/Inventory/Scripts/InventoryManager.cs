@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
-
+//using static UnityEditor.Progress;
 
 
 public class InventoryManager : MonoBehaviour
@@ -10,6 +9,7 @@ public class InventoryManager : MonoBehaviour
     public GameObject inventoryGrid;
     public bool messyInventory;
 
+    
 
     public void PlaceInInventory(UISlotHandler activeSlot, Item item)
     {

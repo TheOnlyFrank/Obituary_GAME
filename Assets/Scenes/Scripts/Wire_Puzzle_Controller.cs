@@ -65,8 +65,8 @@ public class Wire_Puzzle_Controller : MonoBehaviour
         {
             winCondition = true;
             Debug.Log("Puzzle solved correctly!");
-            //SceneManager.LoadScene("Game_Scene", LoadSceneMode);
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName("Game_Scene"));
+            SceneManager.LoadScene("Game_Scene");
+            //SceneManager.SetActiveScene(SceneManager.GetSceneByName("Game_Scene"));
         }
     }
 }
