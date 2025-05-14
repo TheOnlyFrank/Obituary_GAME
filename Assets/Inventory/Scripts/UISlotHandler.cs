@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class UISlotHandler : MonoBehaviour, IPointerClickHandler
 {
@@ -11,16 +12,25 @@ public class UISlotHandler : MonoBehaviour, IPointerClickHandler
     public TextMeshProUGUI itemCountText;
     public InventoryManager inventoryManager;
 
-    public void onPointerClick(PointereventData eventData)
+    public void onPointerClick(PointerEventData eventData)
     {
         throw new System.NotImplementedException();
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            if (item == null) { return; }
+
+            MouseManager.instance.PickupFromStack(this);
+            return;
+        }
+
+        MouseManager.instance.UpdateHeldItem(this);
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        if(item !=null)
+        if (item != null)
         {
             item = item.Clone();
             icon.sprite = item.itemIcon;
@@ -33,5 +43,4 @@ public class UISlotHandler : MonoBehaviour, IPointerClickHandler
         }
     }
 
-  
 }

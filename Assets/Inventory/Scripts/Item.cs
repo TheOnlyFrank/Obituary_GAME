@@ -17,9 +17,9 @@ public static class ScriptableObjectExtension
     /// Creates and returns a clone of any given scriptable object
     /// </summary>
     
-    public static T Clone <T>(this T scriptableObject) where T : scriptableObject
+    public static T Clone <T>(this T scriptableObject) where T : ScriptableObject
     {
-        if (scriptableObject ==null)
+        if (scriptableObject == null)
         {
             Debug.LogError($"ScriptableObject was null. Returning Default {typeof(T)} object.");
             return (T)ScriptableObject.CreateInstance(typeof(T));
@@ -30,3 +30,4 @@ public static class ScriptableObjectExtension
         return instance;
     }
 }
+
