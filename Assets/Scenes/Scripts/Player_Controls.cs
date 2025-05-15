@@ -34,6 +34,7 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
     private PlayerInput playerInput;
     private Light flashlight;
     private AudioSource audioSource;
+    public GameObject MedBayCanvas;
 
 
 
