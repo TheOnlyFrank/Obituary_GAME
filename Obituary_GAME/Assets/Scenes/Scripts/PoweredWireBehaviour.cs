@@ -1,29 +1,37 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
+using Vector3 = UnityEngine.Vector3;
 
-
-
-public class PoweredWireBehaviour : MonoBehaviour, IDragHandler
+public class PoweredWireBehaviour : MonoBehaviour
  {
+    bool Dragging = false;
 
-  [SerializeField] private float dampingSpeed = 0.5f;
-  private RectTransform draggingObjectRectTransform;
-  private Vector3 velocity = Vector3.zero;
-  
+      void Start()
+      {
 
-  private void Awake() 
-    {
-      draggingObjectRectTransform = transform as RectTransform;
-    }
+      }
 
-  public void OnDrag(PointerEventData eventData)
-    {
-      if(RectTransformUtility.ScreenPointToWorldPointInRectangle(draggingObjectRectTransform, eventData.position, eventData.pressEventCamera, out var globalMousePosition))
+      void Update()
+      {
+        if(Dragging)
         {
-          draggingObjectRectTransform.position = Vector3.SmoothDamp(draggingObjectRectTransform.position, globalMousePosition, ref velocity, dampingSpeed);
+            Vector3 mousePos = Input.mousePosition;
+            Vector3 convertedMousePos = Camera.main.ScreenToWorldPoint(mousePos);
+            convertedMousePos.z = 0;
+            transform.position = convertedMousePos;
         }
-    }
+      }
 
+      private void OnMouseDown()
+      {
+        Dragging = true;
+      }
 
-
+      private void OnMouseUp()
+      {
+        Dragging = false;
+      }
  }

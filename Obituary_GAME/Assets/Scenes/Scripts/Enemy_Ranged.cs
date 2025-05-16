@@ -45,7 +45,7 @@ public class Enemy_Ranged : MonoBehaviour
                if (angle < firingAngleThreshold && timeSinceLastShot >= timeBetweenAttacks)
             //if (timeSinceLastShot >= timeBetweenAttacks)
                 {
-                FireCannon();
+                fireCannon();
                 timeSinceLastShot = 0f;
                 }
 
@@ -69,9 +69,9 @@ public class Enemy_Ranged : MonoBehaviour
    //     if (rotateBack)
    //     {
    //         Quaternion forward = Quaternion.Euler(0, 180, 0);
-   //         if (Quaternion.Angle(transform.localRotation, forward) > 0.1f)
+   //         if (Quaternion.Angle(cannon.transform.localRotation, forward) > 0.1f)
    //         {
-   //             transform.localRotation = Quaternion.RotateTowards(transform.localRotation, forward, rotationSpeed * Time.deltaTime);
+   //             cannon.transform.localRotation = Quaternion.RotateTowards(cannon.transform.localRotation, forward, rotationSpeed * Time.deltaTime);
    //         }
    //         else
    //         {
@@ -82,7 +82,7 @@ public class Enemy_Ranged : MonoBehaviour
 
 
 
-    private void FireCannon()
+    private void fireCannon()
     {
         // Instantiate the cannonball at the stationary ball's position
         GameObject newCannonBall = Instantiate(cannonBallPrefab, stationaryCannonBall.position, Quaternion.identity);
@@ -91,9 +91,9 @@ public class Enemy_Ranged : MonoBehaviour
         Rigidbody rb = newCannonBall.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.AddForce(transform.forward * launchForce); 
+            rb.AddForce(cannon.transform.forward * launchForce); // Note the negative sign, since we rotated the cannon 180 degrees
         }
 
-        Destroy(newCannonBall, 3f);
+        Destroy(newCannonBall, 50f);
     }
 }

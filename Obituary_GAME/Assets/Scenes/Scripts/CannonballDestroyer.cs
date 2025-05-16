@@ -6,7 +6,7 @@ public class CannonballDestroyer : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "Enemy")
+        if (other.tag != "Player")
         {
             Destroy(gameObject);
         }
