@@ -15,6 +15,7 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
     public AudioClip accessDeniedSound;
     public Inventory_Manager inventory;
     public SwitchScene switchScene;
+    //public GameObject MedBayCanvas;
 
     // Private variables
     [SerializeField] private float moveSpeed = 5f;
@@ -34,7 +35,7 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
     private PlayerInput playerInput;
     private Light flashlight;
     private AudioSource audioSource;
-    public GameObject MedBayCanvas;
+    
 
 
 
@@ -224,16 +225,33 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
 
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if ((other.tag == "Wire_Box") && (playerInput.actions["Interact"].WasPressedThisFrame()))
-        {
-            Debug.Log("Interact button pressed");
-            //switchScene.ChangeScene();
-            //SaveData();
-            SceneManager.LoadScene("Wire_Puzzle", LoadSceneMode.Single);
-        }
-    }
+    // private void OnTriggerStay(Collider other)
+    // {
+    //     if ((other.tag == "Wire_Box") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+    //     {
+    //         Debug.Log("Interact button pressed");
+    //         //switchScene.ChangeScene();
+    //         //SaveData();
+    //         SceneManager.LoadScene("Wire_Puzzle", LoadSceneMode.Single);
+    //     }
+    //     else
+    //     {
+    //         if ((other.tag == "MedBayRubble") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+    //         {
+    //             Debug.Log("Interact button pressed");
+    //             MedBayCanvas.SetActive(true);
+    //         }
+    //     }
+    // }
+
+    // private void OnTriggerExit(Collider other)
+    // {
+    //    if ((other.tag == "MedBayRubble"))
+    //         {
+    //             Debug.Log("Player exited trigger");
+    //             MedBayCanvas.SetActive(false);
+    //         }
+    // }
 
     public void LoadData(Game_Data data)
     {

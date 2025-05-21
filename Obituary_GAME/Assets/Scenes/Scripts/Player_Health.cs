@@ -30,7 +30,7 @@ public class Player_Health : MonoBehaviour
         if (player_Health == 0)
         {
             Debug.Log("You died");
-            SceneManager.LoadScene("Main_Menu", LoadSceneMode.Single);
+            SceneManager.LoadScene("Menu_Scene", LoadSceneMode.Single);
         }
     }
 }
