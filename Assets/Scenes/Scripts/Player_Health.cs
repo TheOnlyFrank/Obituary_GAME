@@ -1,0 +1,36 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+
+public class Player_Health : MonoBehaviour
+{
+    public int player_Health;
+ 
+ 
+
+
+    // Handling damage from ranged attacks
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Ranged") || other.CompareTag("Melee"))
+        {
+            player_Health = player_Health - 1;
+            Debug.Log(player_Health);
+            Debug.Log("Ouch!");
+        }
+    }
+
+
+
+    // Keep player's on-screen health updated
+    public void Update()
+    {
+        if (player_Health == 0)
+        {
+            Debug.Log("You died");
+            SceneManager.LoadScene("Menu_Scene", LoadSceneMode.Single);
+        }
+    }
+}
