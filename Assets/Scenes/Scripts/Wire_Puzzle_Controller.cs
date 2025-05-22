@@ -7,7 +7,7 @@ public class Wire_Puzzle_Controller : MonoBehaviour
 {
     [SerializeField] GameObject Wire_Puzzle_Canvas;
     [SerializeField] GameObject Specific_Door;
-
+    
     public bool redCheck;
     public bool greenCheck;
     public bool blueCheck;
@@ -28,6 +28,7 @@ public class Wire_Puzzle_Controller : MonoBehaviour
         blueCheck = false;
         winCondition = false;
         Wire_Puzzle_Canvas.SetActive(true);
+        Time.timeScale = 0;
     }
 
     // Update is called once per frame
@@ -74,7 +75,7 @@ public class Wire_Puzzle_Controller : MonoBehaviour
             Debug.Log("Puzzle solved correctly!");
             Wire_Puzzle_Canvas.SetActive(false);
             Specific_Door.GetComponent<Auto_Door>().enabled = true;
-            //Time.timeScale = 1;
+            Time.timeScale = 1;
         }
     }
 }

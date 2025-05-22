@@ -15,6 +15,7 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
     public AudioClip accessDeniedSound;
     public Inventory_Manager inventory;
     public SwitchScene switchScene;
+    public GameObject Inventory_Canvas;
     //public GameObject MedBayCanvas;
 
     // Private variables
@@ -46,6 +47,7 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
         playerInput = GetComponent<PlayerInput>();
         flashlight = GetComponent<Light>();
         flashlight.enabled = false;
+        Inventory_Canvas.SetActive(false);
     }
 
     void Start()
@@ -153,8 +155,16 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
     {
         if (playerInput.actions["Inventory_Menu"].WasPressedThisFrame())
         {
-            //save game call goes here
-            SceneManager.LoadScene("Inventory", LoadSceneMode.Single);
+            if (Inventory_Canvas.activeSelf)
+            {
+                Inventory_Canvas.SetActive(false);
+                Time.timeScale = 1;
+            }
+            else
+            {
+                Inventory_Canvas.SetActive(true);
+                Time.timeScale = 0;
+            }
         }
     }
 
