@@ -10,6 +10,15 @@ TagManager:
   - Red_Wire
   - Yellow_Wire
   - Green_Wire
+  - Key
+  - Flashlight
+  - Wire_Box
+  - Ground
+  - Auto_Door
+  - Enemy
+  - MedBayRubble
+  - Crew_Door
+  - Crew_Trigger
   layers:
   - Default
   - TransparentFX
