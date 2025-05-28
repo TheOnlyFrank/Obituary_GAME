@@ -158,12 +158,12 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
             if (Inventory_Canvas.activeSelf)
             {
                 Inventory_Canvas.SetActive(false);
-                Time.timeScale = 1;
+                //Time.timeScale = 1;
             }
             else
             {
                 Inventory_Canvas.SetActive(true);
-                Time.timeScale = 0;
+                //Time.timeScale = 0;
             }
         }
     }
