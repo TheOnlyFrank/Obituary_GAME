@@ -14,7 +14,7 @@ public class Player_Health : MonoBehaviour
     // Handling damage from ranged attacks
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Ranged") || other.CompareTag("Melee"))
+        if (other.CompareTag("Ranged"))
         {
             player_Health = player_Health - 1;
             Debug.Log(player_Health);

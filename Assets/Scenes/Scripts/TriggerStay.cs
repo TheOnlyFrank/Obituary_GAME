@@ -10,6 +10,7 @@ public class TriggerStay : MonoBehaviour
     //public classes
     public GameObject MedBayCanvas;
     [SerializeField] GameObject Wire_Puzzle_Canvas;
+    [SerializeField] GameObject Signalis_Puzzle_Canvas;
 
     //private classes
     private PlayerInput playerInput;
@@ -24,6 +25,7 @@ public class TriggerStay : MonoBehaviour
     {
         MedBayCanvas.SetActive(false);
         Wire_Puzzle_Canvas.SetActive(false);
+        Signalis_Puzzle_Canvas.SetActive(false);
     }
 
     private void OnTriggerStay(Collider other)
@@ -40,6 +42,14 @@ public class TriggerStay : MonoBehaviour
             {
                 Debug.Log("Interact button pressed");
                 MedBayCanvas.SetActive(true);
+            }
+            else
+            {
+                if ((other.tag == "Signalis_Puzzle") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+                {
+                    Debug.Log("Interact button pressed");
+                    Signalis_Puzzle_Canvas.SetActive(true);
+                }
             }
         }
     }
