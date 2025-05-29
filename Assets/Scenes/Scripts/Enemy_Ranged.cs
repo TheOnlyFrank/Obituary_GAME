@@ -30,7 +30,7 @@ public class Enemy_Ranged : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-               Vector3 targetPosition = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
+               Vector3 targetPosition = new Vector3(other.transform.position.x, transform.position.y -1, other.transform.position.z);
                Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
 
                 targetRotation *= Quaternion.Euler(0, 0, 0);

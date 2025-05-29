@@ -8,7 +8,7 @@ public class Enemy_Navigation : MonoBehaviour
 
     public Transform goal;
 
-    public float shootRange = 4f;
+    //public float shootRange = 4f;
     public float meleeRange = 1.5f;
     public float rotationSpeed = 100f;
 
@@ -60,7 +60,7 @@ public class Enemy_Navigation : MonoBehaviour
        Vector3 direction = (goal.position - transform.position);
        Quaternion lookRotation = Quaternion.LookRotation(direction);
        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
-    }
+   }
 
 
     

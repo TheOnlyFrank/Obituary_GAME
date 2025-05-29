@@ -11,8 +11,10 @@ public class TriggerStay : MonoBehaviour
     public GameObject EPrompt;
     public GameObject MedBayCanvas;
     public GameObject CrewCanvas;
-    [SerializeField] GameObject Wire_Puzzle_Canvas;
     
+    [SerializeField] GameObject Wire_Puzzle_Canvas;
+    [SerializeField] GameObject Signalis_Puzzle_Canvas;
+
 
     //private classes
     private PlayerInput playerInput;
@@ -27,6 +29,7 @@ public class TriggerStay : MonoBehaviour
     {
         MedBayCanvas.SetActive(false);
         Wire_Puzzle_Canvas.SetActive(false);
+        Signalis_Puzzle_Canvas.SetActive(false);
         CrewCanvas.SetActive(false);
         EPrompt.SetActive(false);
     }
@@ -38,7 +41,7 @@ public class TriggerStay : MonoBehaviour
             Debug.Log("Interact button pressed");
             EPrompt.SetActive(false);
             Wire_Puzzle_Canvas.SetActive(true);
-            //Time.timeScale = 0;
+            
         }
         else
         {
@@ -55,6 +58,15 @@ public class TriggerStay : MonoBehaviour
                     Debug.Log("Interact button pressed");
                     EPrompt.SetActive(false);
                     CrewCanvas.SetActive(true);
+                }
+                else
+                {
+                    if ((other.tag == "Signalis_Puzzle") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+                    {
+                        Debug.Log("Interact button pressed");
+                        EPrompt.SetActive(false);
+                        Signalis_Puzzle_Canvas.SetActive(true);
+                    }
                 }
             }
         }
