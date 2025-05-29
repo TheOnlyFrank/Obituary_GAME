@@ -11,6 +11,9 @@ public class TriggerStay : MonoBehaviour
     public GameObject EPrompt;
     public GameObject MedBayCanvas;
     public GameObject CrewCanvas;
+    public GameObject Airlock_Canvas;
+    public GameObject CivCryoOp;
+    public GameObject CrewCryoOp;
     
     [SerializeField] GameObject Wire_Puzzle_Canvas;
     [SerializeField] GameObject Signalis_Puzzle_Canvas;
@@ -32,6 +35,9 @@ public class TriggerStay : MonoBehaviour
         Signalis_Puzzle_Canvas.SetActive(false);
         CrewCanvas.SetActive(false);
         EPrompt.SetActive(false);
+        Airlock_Canvas.SetActive(false);
+        CivCryoOp.SetActive(false);
+        CrewCryoOp.SetActive(false);
     }
 
     private void OnTriggerStay(Collider other)
@@ -67,6 +73,33 @@ public class TriggerStay : MonoBehaviour
                         EPrompt.SetActive(false);
                         Signalis_Puzzle_Canvas.SetActive(true);
                     }
+                    else
+                    {
+                        if ((other.tag == "Airlock_Trigger") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+                        {
+                            Debug.Log("Interact button pressed");
+                            EPrompt.SetActive(false);
+                            Airlock_Canvas.SetActive(true);
+                        }
+                        else
+                        {
+                            if ((other.tag == "Civ_Operation") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+                            {
+                                Debug.Log("Interact button pressed");
+                                EPrompt.SetActive(false);
+                                CivCryoOp.SetActive(true);
+                            }
+                            else
+                            {
+                                if((other.tag == "Crew_Operation") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+                                {
+                                    Debug.Log("Interact button pressed");
+                                    EPrompt.SetActive(false);
+                                    CrewCryoOp.SetActive(true);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -86,6 +119,30 @@ public class TriggerStay : MonoBehaviour
             {
                 Debug.Log("Player exited trigger");
                 CrewCanvas.SetActive(false);
+            }
+            else
+            {
+                if ((other.tag == "Airlock_Trigger"))
+                {
+                    Debug.Log("Player exited trigger");
+                    Airlock_Canvas.SetActive(false);
+                }
+                else
+                {
+                    if ((other.tag == "Civ_Operation"))
+                    {
+                        Debug.Log("Player exited trigger");
+                        CivCryoOp.SetActive(false);
+                    }
+                    else
+                    {
+                        if((other.tag == "Crew_Operation"))
+                        {
+                            Debug.Log("Player exited trigger");
+                            CrewCryoOp.SetActive(false);
+                        }
+                    }
+                }
             }
         }
     }
