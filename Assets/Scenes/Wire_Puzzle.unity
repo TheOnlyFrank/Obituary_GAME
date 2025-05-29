@@ -383,6 +383,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ca9506302a0e54c8c3a20076a00989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Wire_Puzzle_Canvas: {fileID: 0}
+  Specific_Door: {fileID: 0}
   redCheck: 0
   greenCheck: 0
   blueCheck: 0
@@ -1962,7 +1964,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1101, y: 619.3125}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1606555131
 MonoBehaviour:
@@ -2916,8 +2918,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2062327025}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0.016804218, y: -0.00090221514, z: 0.000015447791, w: -0.9998584}
+  m_LocalPosition: {x: 1022.2941, y: 527.2912, z: -965.65625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
