@@ -30,8 +30,8 @@ public class Enemy_Ranged : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-               Vector3 targetPosition = new Vector3(other.transform.position.x, transform.position.y -1, other.transform.position.z);
-               Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
+            Vector3 targetPosition = new Vector3(other.transform.position.x, transform.position.y -1, other.transform.position.z);
+            Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
 
                 targetRotation *= Quaternion.Euler(0, 0, 0);
 
@@ -42,12 +42,14 @@ public class Enemy_Ranged : MonoBehaviour
                float angle = Quaternion.Angle(transform.rotation, targetRotation);
 
             //   // Fire if within angle threshold
-               if (angle < firingAngleThreshold && timeSinceLastShot >= timeBetweenAttacks)
-            //if (timeSinceLastShot >= timeBetweenAttacks)
+            if (angle <= firingAngleThreshold)
+            {
+                if (timeSinceLastShot >= timeBetweenAttacks)
                 {
-                fireCannon();
-                timeSinceLastShot = 0f;
+                    fireCannon();
+                    timeSinceLastShot = 0f;
                 }
+            }
 
         }
     }

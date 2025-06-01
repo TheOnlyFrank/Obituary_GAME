@@ -9,8 +9,8 @@ public class Enemy_Navigation : MonoBehaviour
     public Transform goal;
 
     //public float shootRange = 4f;
-    public float meleeRange = 1.5f;
-    public float rotationSpeed = 100f;
+    public float meleeRange = 2f;
+    public float rotationSpeed = 200f;
 
     public NavMeshAgent navAgent;
     private float initialNavSpeed;
@@ -34,11 +34,11 @@ public class Enemy_Navigation : MonoBehaviour
         if (distance <= meleeRange)
         {
             navAgent.speed = 0f;
-            float angle = 5;
-            if (Vector3.Angle(transform.forward, goal.transform.position - transform.position) >= angle)
-            {
-                RotateTowards(goal);
-            }
+            //float angle = 5;
+            //if (Vector3.Angle(transform.forward, goal.transform.position - transform.position) >= angle)
+            //{
+            //    RotateTowards(goal);
+            //}
         }
         else
         {
@@ -54,13 +54,13 @@ public class Enemy_Navigation : MonoBehaviour
    }
 
    //Rotates enemy toward player even when movement is stopped
-   private void RotateTowards(Transform goal)
-   {
-       transform.LookAt(goal.transform);
-       Vector3 direction = (goal.position - transform.position);
-       Quaternion lookRotation = Quaternion.LookRotation(direction);
-       transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
-   }
+   //private void RotateTowards(Transform goal)
+   //{
+   //    transform.LookAt(goal.transform);
+   //    Vector3 direction = (goal.position - transform.position);
+   //    Quaternion lookRotation = Quaternion.LookRotation(direction);
+   //    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+   //}
 
 
     
