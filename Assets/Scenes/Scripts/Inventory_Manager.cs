@@ -6,6 +6,9 @@ public class Inventory_Manager : MonoBehaviour
 {
 
     public bool has_Key = false;
+    public bool has_Blank_Key = false;
+    public bool has_Copilot_Key = false;
+    public bool has_Reactor_Key = false;
     public bool has_Pistol = false;
     public bool has_Shotgun = false;
     public bool has_Melee = false;
@@ -20,6 +23,9 @@ public class Inventory_Manager : MonoBehaviour
     void Start()
     {
         has_Key = false;
+        has_Blank_Key = false;
+        has_Copilot_Key = false;
+        has_Reactor_Key = false;
         has_Pistol = false;
         has_Shotgun = false;
         has_Melee = false;

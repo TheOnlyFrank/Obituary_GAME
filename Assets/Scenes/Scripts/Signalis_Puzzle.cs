@@ -2,15 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Signalis_Puzzle : MonoBehaviour
 {
 
     [SerializeField] GameObject Signalis_Puzzle_Canvas;
+    [SerializeField] GameObject Specific_Door;
+    [SerializeField] GameObject Directional_Light;
+   // [SerializeField] GameObject Area_Light;
     [SerializeField] TextMeshProUGUI TankOneValue;
     [SerializeField] TextMeshProUGUI TankTwoValue;
     [SerializeField] TextMeshProUGUI TankThreeValue;
 
+    
     public int one_Max = 1200;
     public int one_Start = 1200;
     public int one_Current;
@@ -177,6 +182,10 @@ public class Signalis_Puzzle : MonoBehaviour
             Debug.Log("Puzzle Solved!");
             Signalis_Puzzle_Canvas.SetActive(false);
             //Insert reward for solving puzzle here
+            Specific_Door.GetComponent<Auto_Door>().enabled = true;
+            Destroy (Directional_Light);
+        //    Destroy(Area_Light);
+            SceneManager.LoadScene("Powered_Lighting", LoadSceneMode.Additive);
         }
     }
 }
