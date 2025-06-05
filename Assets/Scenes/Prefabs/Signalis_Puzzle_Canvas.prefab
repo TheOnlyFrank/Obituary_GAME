@@ -2331,6 +2331,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Signalis_Puzzle_Canvas: {fileID: 9129827515912212896}
+  Specific_Door: {fileID: 0}
+  Directional_Light: {fileID: 0}
   TankOneValue: {fileID: 9129827513859337170}
   TankTwoValue: {fileID: 9129827515804554262}
   TankThreeValue: {fileID: 9129827514717995480}

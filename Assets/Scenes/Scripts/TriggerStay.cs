@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
 
 public class TriggerStay : MonoBehaviour
 {
@@ -14,9 +14,11 @@ public class TriggerStay : MonoBehaviour
     public GameObject Airlock_Canvas;
     public GameObject CivCryoOp;
     public GameObject CrewCryoOp;
-    
+    public GameObject Unpowered_Canvas;
+
     [SerializeField] GameObject Wire_Puzzle_Canvas;
     [SerializeField] GameObject Signalis_Puzzle_Canvas;
+    [SerializeField] GameObject Signalis_Puzzle_Canvas_2;
 
 
     //private classes
@@ -38,6 +40,8 @@ public class TriggerStay : MonoBehaviour
         Airlock_Canvas.SetActive(false);
         CivCryoOp.SetActive(false);
         CrewCryoOp.SetActive(false);
+        Signalis_Puzzle_Canvas_2.SetActive(false);
+        Unpowered_Canvas.SetActive(false);
     }
 
     private void OnTriggerStay(Collider other)
@@ -67,7 +71,7 @@ public class TriggerStay : MonoBehaviour
                 }
                 else
                 {
-                    if ((other.tag == "Signalis_Puzzle") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+                    if ((other.tag == "Crew_Cryo") && (playerInput.actions["Interact"].WasPressedThisFrame()))
                     {
                         Debug.Log("Interact button pressed");
                         EPrompt.SetActive(false);
@@ -91,11 +95,29 @@ public class TriggerStay : MonoBehaviour
                             }
                             else
                             {
-                                if((other.tag == "Crew_Operation") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+                                if ((other.tag == "Crew_Operation") && (playerInput.actions["Interact"].WasPressedThisFrame()))
                                 {
                                     Debug.Log("Interact button pressed");
                                     EPrompt.SetActive(false);
                                     CrewCryoOp.SetActive(true);
+                                }
+                                else
+                                {
+                                    if ((other.tag == "Reactor") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+                                    {
+                                        Debug.Log("Interact button pressed");
+                                        EPrompt.SetActive(false);
+                                        Signalis_Puzzle_Canvas_2.SetActive(true);
+                                    }
+                                    else
+                                    {
+                                        if ((other.tag == "Unpowered_Door") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+                                        {
+                                            Debug.Log("Interact button pressed");
+                                            EPrompt.SetActive(false);
+                                            Unpowered_Canvas.SetActive(true);
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -140,6 +162,14 @@ public class TriggerStay : MonoBehaviour
                         {
                             Debug.Log("Player exited trigger");
                             CrewCryoOp.SetActive(false);
+                        }
+                        else
+                        {
+                            if ((other.tag == "Unpowered_Door"))
+                            {
+                                Debug.Log("Player exited trigger");
+                                Unpowered_Canvas.SetActive(false);
+                            }
                         }
                     }
                 }

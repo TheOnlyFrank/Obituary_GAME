@@ -8,9 +8,12 @@ public class Signalis_Puzzle : MonoBehaviour
 {
 
     [SerializeField] GameObject Signalis_Puzzle_Canvas;
-    [SerializeField] GameObject Specific_Door;
+    [SerializeField] GameObject Signalis_Puzzle_Canvas_2;
+    [SerializeField] GameObject Crew_Cryo_Door;
+    [SerializeField] GameObject Unpowered_Door;
     [SerializeField] GameObject Directional_Light;
-   // [SerializeField] GameObject Area_Light;
+    [SerializeField] GameObject Crew_Cryo_Trigger;
+    [SerializeField] GameObject Reactor_Trigger;
     [SerializeField] TextMeshProUGUI TankOneValue;
     [SerializeField] TextMeshProUGUI TankTwoValue;
     [SerializeField] TextMeshProUGUI TankThreeValue;
@@ -34,7 +37,18 @@ public class Signalis_Puzzle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Signalis_Puzzle_Canvas.SetActive(true);
+
+        if (this.tag == "Crew_Cryo")
+        {
+            Signalis_Puzzle_Canvas.SetActive(true);
+        }
+        else
+        {
+            if (this.tag == "Reactor")
+            {
+            Signalis_Puzzle_Canvas_2.SetActive(true);
+            }
+        }
         one_Current = one_Start;
         two_Current = two_Start;
         three_Current = three_Start;
@@ -180,12 +194,27 @@ public class Signalis_Puzzle : MonoBehaviour
     if (one_Current == two_Current)
         {
             Debug.Log("Puzzle Solved!");
-            Signalis_Puzzle_Canvas.SetActive(false);
-            //Insert reward for solving puzzle here
-            Specific_Door.GetComponent<Auto_Door>().enabled = true;
-            Destroy (Directional_Light);
-        //    Destroy(Area_Light);
-            SceneManager.LoadScene("Powered_Lighting", LoadSceneMode.Additive);
+            
+            if (this.tag == "Crew_Cryo")
+            {
+                Signalis_Puzzle_Canvas.SetActive(false);
+                Crew_Cryo_Door.GetComponent<Auto_Door>().enabled = true;
+                Debug.Log("Crew Cryo Door Unlocked!");
+                Destroy(Crew_Cryo_Trigger);
+            }
+            else
+            {
+                if (this.tag == "Reactor")
+                {
+                    Signalis_Puzzle_Canvas_2.SetActive(false);
+                    Unpowered_Door.GetComponent<Auto_Door>().enabled = true;
+                    Destroy(Directional_Light);
+                    SceneManager.LoadScene("Powered_Lighting", LoadSceneMode.Additive);
+                    Debug.Log("Power Restored!");
+                    Destroy(Reactor_Trigger);
+                }
+            }
+
         }
     }
 }
