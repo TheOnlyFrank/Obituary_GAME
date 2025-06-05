@@ -199,13 +199,13 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
         }
         else
         {
-            if (other.tag == "Locked_Door")
+            if (other.tag == "Reactor_Door")
             {
-                if (inventory.has_Key)
+                if (inventory.has_Reactor_Key)
                 {
-                    if (other.GetComponent<Locked_Door>().moving_Out == false)
+                    if (other.GetComponent<Reactor_Door>().moving_Out == false)
                     {
-                        other.GetComponent<Locked_Door>().moving_Out = true;
+                        other.GetComponent<Reactor_Door>().moving_Out = true;
                     }
                 }
                 else
@@ -215,19 +215,54 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
             }
             else
             {
-                if (other.tag == "Key")
+                if (other.tag == "Locked_Door")
                 {
-                    inventory.has_Key = true;
-                    Debug.Log("You got the key!");
-                    Destroy(other.gameObject);
+                    if (inventory.has_Co_Pilot_Key)
+                    {
+                        if (other.GetComponent<Locked_Door>().moving_Out == false)
+                        {
+                            other.GetComponent<Locked_Door>().moving_Out = true;
+                        }
+                    }
+                    else
+                    {
+                        PlayAudioEffect(accessDeniedSound);
+                    }
                 }
                 else
                 {
-                    if (other.tag == "Flashlight")
+                    if (other.tag == "Blank_Key")
                     {
-                        inventory.has_Flashlight = true;
-                        Debug.Log("You got the flashlight!");
+                        inventory.has_Blank_Key = true;
+                        Debug.Log("You got the Blank key!");
                         Destroy(other.gameObject);
+                    }
+                    else
+                    {
+                        if (other.tag == "Co-Pilot_Key")
+                        {
+                            inventory.has_Co_Pilot_Key = true;
+                            Debug.Log("You got the Co-Pilot key!");
+                            Destroy(other.gameObject);
+                        }
+                        else
+                        {
+                            if (other.tag == "Flashlight")
+                            {
+                                inventory.has_Flashlight = true;
+                                Debug.Log("You got the flashlight!");
+                                Destroy(other.gameObject);
+                            }
+                            else
+                            {
+                                if (other.tag == "Reactor_Key")
+                                {
+                                    inventory.has_Reactor_Key = true;
+                                    Debug.Log("You got the Reactor key!");
+                                    Destroy(other.gameObject);
+                                }
+                            }
+                        }
                     }
                 }
             }
