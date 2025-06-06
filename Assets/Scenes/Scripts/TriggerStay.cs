@@ -15,11 +15,11 @@ public class TriggerStay : MonoBehaviour
     public GameObject CivCryoOp;
     public GameObject CrewCryoOp;
     public GameObject Unpowered_Canvas;
-
+    
     [SerializeField] GameObject Wire_Puzzle_Canvas;
     [SerializeField] GameObject Signalis_Puzzle_Canvas;
     [SerializeField] GameObject Signalis_Puzzle_Canvas_2;
-
+    [SerializeField] GameObject Computer_Keycards_Canvas;
 
     //private classes
     private PlayerInput playerInput;
@@ -42,6 +42,7 @@ public class TriggerStay : MonoBehaviour
         CrewCryoOp.SetActive(false);
         Signalis_Puzzle_Canvas_2.SetActive(false);
         Unpowered_Canvas.SetActive(false);
+        Computer_Keycards_Canvas.SetActive(false);
     }
 
     private void OnTriggerStay(Collider other)
@@ -117,6 +118,15 @@ public class TriggerStay : MonoBehaviour
                                             EPrompt.SetActive(false);
                                             Unpowered_Canvas.SetActive(true);
                                         }
+                                        else
+                                        {
+                                            if ((other.tag == "Computer_Room") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+                                            {
+                                                Debug.Log("Interact button pressed");
+                                                EPrompt.SetActive(false);
+                                                Computer_Keycards_Canvas.SetActive(true);
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -169,6 +179,14 @@ public class TriggerStay : MonoBehaviour
                             {
                                 Debug.Log("Player exited trigger");
                                 Unpowered_Canvas.SetActive(false);
+                            }
+                            else
+                            {
+                                if ((other.tag == "Computer_Room"))
+                                {
+                                    Debug.Log("Player exited trigger");
+                                    Computer_Keycards_Canvas.SetActive(false);
+                                }
                             }
                         }
                     }

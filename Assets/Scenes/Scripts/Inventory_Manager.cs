@@ -8,6 +8,7 @@ public class Inventory_Manager : MonoBehaviour
     public bool has_Key = false;
     public bool has_Blank_Key = false;
     public bool has_Co_Pilot_Key = false;
+    public bool has_Pilot_Key = false;
     public bool has_Reactor_Key = false;
     public bool has_Pistol = false;
     public bool has_Shotgun = false;
@@ -25,6 +26,7 @@ public class Inventory_Manager : MonoBehaviour
         has_Key = false;
         has_Blank_Key = false;
         has_Co_Pilot_Key = false;
+        has_Pilot_Key = false;
         has_Reactor_Key = false;
         has_Pistol = false;
         has_Shotgun = false;
