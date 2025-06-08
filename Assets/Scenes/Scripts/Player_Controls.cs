@@ -19,7 +19,7 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
     //public GameObject MedBayCanvas;
 
     // Private variables
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float gravityValue = -9.81f;
     [SerializeField] private float controllerDeadzone = 0.1f;
     [SerializeField] private float gamepadRotateSmoothing = 1000f;
@@ -91,9 +91,9 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
     {
         var running = playerInput.actions["Run"];
         if (running.IsPressed())
-        { moveSpeed = 10.0f; }
+        { moveSpeed = 6.0f; }
         else
-        { moveSpeed = 5.0f; }
+        { moveSpeed = 3.0f; }
 
         Vector3 move = new Vector3(movement.x, 0, movement.y);
         controller.Move(move * Time.deltaTime * moveSpeed);
