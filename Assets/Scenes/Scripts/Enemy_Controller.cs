@@ -57,7 +57,7 @@ public class Enemy_Controller : MonoBehaviour
         agent.SetDestination(goal.position);
     }
 
-    void FireCannon()
+    private void FireCannon()
     {
         if (cooldown.IsCoolingDown) return;
 

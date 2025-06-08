@@ -20,6 +20,9 @@ public class TriggerStay : MonoBehaviour
     [SerializeField] GameObject Signalis_Puzzle_Canvas;
     [SerializeField] GameObject Signalis_Puzzle_Canvas_2;
     [SerializeField] GameObject Computer_Keycards_Canvas;
+    [SerializeField] GameObject Bridge_Canvas;
+    [SerializeField] GameObject End_Level_Canvas;
+    [SerializeField] GameObject Player;
 
     //private classes
     private PlayerInput playerInput;
@@ -43,6 +46,8 @@ public class TriggerStay : MonoBehaviour
         Signalis_Puzzle_Canvas_2.SetActive(false);
         Unpowered_Canvas.SetActive(false);
         Computer_Keycards_Canvas.SetActive(false);
+        Bridge_Canvas.SetActive(false);
+        End_Level_Canvas.SetActive(false);
     }
 
     private void OnTriggerStay(Collider other)
@@ -126,6 +131,24 @@ public class TriggerStay : MonoBehaviour
                                                 EPrompt.SetActive(false);
                                                 Computer_Keycards_Canvas.SetActive(true);
                                             }
+                                            else
+                                            {
+                                                if ((other.tag == "Bridge") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+                                                {
+                                                    Debug.Log("Interact button pressed");
+                                                    EPrompt.SetActive(false);
+                                                    Bridge_Canvas.SetActive(true);
+                                                }
+                                                else
+                                                {
+                                                    if (other.tag == "End_Level")
+                                                    {
+                                                        Debug.Log("Entered Level End Area");
+                                                        End_Level_Canvas.SetActive(true);
+                                                        Player.SetActive(false);
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -186,6 +209,14 @@ public class TriggerStay : MonoBehaviour
                                 {
                                     Debug.Log("Player exited trigger");
                                     Computer_Keycards_Canvas.SetActive(false);
+                                }
+                                else
+                                {
+                                    if ((other.tag == "Bridge"))
+                                    {
+                                        Debug.Log("Player exited trigger");
+                                        Bridge_Canvas.SetActive(false);
+                                    }
                                 }
                             }
                         }
