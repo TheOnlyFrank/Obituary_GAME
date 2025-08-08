@@ -27,12 +27,12 @@ public class SwitchScene : MonoBehaviour
     //           if (playerInput.actions["Interact"].WasPressedThisFrame())
     //           {
     //               Debug.Log("Interact button pressed");
-    //               SceneManager.LoadScene("WirePuzzle", LoadSceneMode.Additive);
+    //               SceneManager.LoadScene("Wire_Puzzle", LoadSceneMode.Additive);
     //           }
     //       }
     //   }
     public void ChangeScene()
     {
-        SceneManager.LoadScene("WirePuzzle", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Wire_Puzzle", LoadSceneMode.Additive);
     }
 }

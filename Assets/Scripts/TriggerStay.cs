@@ -11,17 +11,17 @@ public class TriggerStay : MonoBehaviour
     public GameObject EPrompt;
     public GameObject MedBayCanvas;
     public GameObject CrewCanvas;
-    public GameObject AirlockCanvas;
+    public GameObject Airlock_Canvas;
     public GameObject CivCryoOp;
     public GameObject CrewCryoOp;
-    public GameObject UnpoweredCanvas;
+    public GameObject Unpowered_Canvas;
     
-    [SerializeField] GameObject WirePuzzleCanvas;
-    [SerializeField] GameObject SignalisPuzzleCanvas;
-    [SerializeField] GameObject SignalisPuzzleCanvas2;
-    [SerializeField] GameObject ComputerKeycardsCanvas;
-    [SerializeField] GameObject BridgeCanvas;
-    [SerializeField] GameObject EndLevelCanvas;
+    [SerializeField] GameObject Wire_Puzzle_Canvas;
+    [SerializeField] GameObject Signalis_Puzzle_Canvas;
+    [SerializeField] GameObject Signalis_Puzzle_Canvas_2;
+    [SerializeField] GameObject Computer_Keycards_Canvas;
+    [SerializeField] GameObject Bridge_Canvas;
+    [SerializeField] GameObject End_Level_Canvas;
     [SerializeField] GameObject Player;
 
     //private classes
@@ -36,27 +36,27 @@ public class TriggerStay : MonoBehaviour
     private void Start()
     {
         MedBayCanvas.SetActive(false);
-        WirePuzzleCanvas.SetActive(false);
-        SignalisPuzzleCanvas.SetActive(false);
+        Wire_Puzzle_Canvas.SetActive(false);
+        Signalis_Puzzle_Canvas.SetActive(false);
         CrewCanvas.SetActive(false);
         EPrompt.SetActive(false);
-        AirlockCanvas.SetActive(false);
+        Airlock_Canvas.SetActive(false);
         CivCryoOp.SetActive(false);
         CrewCryoOp.SetActive(false);
-        SignalisPuzzleCanvas2.SetActive(false);
-        UnpoweredCanvas.SetActive(false);
-        ComputerKeycardsCanvas.SetActive(false);
-        BridgeCanvas.SetActive(false);
-        EndLevelCanvas.SetActive(false);
+        Signalis_Puzzle_Canvas_2.SetActive(false);
+        Unpowered_Canvas.SetActive(false);
+        Computer_Keycards_Canvas.SetActive(false);
+        Bridge_Canvas.SetActive(false);
+        End_Level_Canvas.SetActive(false);
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if ((other.tag == "WireBox") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+        if ((other.tag == "Wire_Box") && (playerInput.actions["Interact"].WasPressedThisFrame()))
         {
             Debug.Log("Interact button pressed");
             EPrompt.SetActive(false);
-            WirePuzzleCanvas.SetActive(true);
+            Wire_Puzzle_Canvas.SetActive(true);
             
         }
         else
@@ -69,7 +69,7 @@ public class TriggerStay : MonoBehaviour
             }
             else
             {
-                if ((other.tag == "CrewTrigger") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+                if ((other.tag == "Crew_Trigger") && (playerInput.actions["Interact"].WasPressedThisFrame()))
                 {
                     Debug.Log("Interact button pressed");
                     EPrompt.SetActive(false);
@@ -77,23 +77,23 @@ public class TriggerStay : MonoBehaviour
                 }
                 else
                 {
-                    if ((other.tag == "CrewCryo") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+                    if ((other.tag == "Crew_Cryo") && (playerInput.actions["Interact"].WasPressedThisFrame()))
                     {
                         Debug.Log("Interact button pressed");
                         EPrompt.SetActive(false);
-                        SignalisPuzzleCanvas.SetActive(true);
+                        Signalis_Puzzle_Canvas.SetActive(true);
                     }
                     else
                     {
-                        if ((other.tag == "AirlockTrigger") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+                        if ((other.tag == "Airlock_Trigger") && (playerInput.actions["Interact"].WasPressedThisFrame()))
                         {
                             Debug.Log("Interact button pressed");
                             EPrompt.SetActive(false);
-                            AirlockCanvas.SetActive(true);
+                            Airlock_Canvas.SetActive(true);
                         }
                         else
                         {
-                            if ((other.tag == "CivOperation") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+                            if ((other.tag == "Civ_Operation") && (playerInput.actions["Interact"].WasPressedThisFrame()))
                             {
                                 Debug.Log("Interact button pressed");
                                 EPrompt.SetActive(false);
@@ -101,7 +101,7 @@ public class TriggerStay : MonoBehaviour
                             }
                             else
                             {
-                                if ((other.tag == "CrewOperation") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+                                if ((other.tag == "Crew_Operation") && (playerInput.actions["Interact"].WasPressedThisFrame()))
                                 {
                                     Debug.Log("Interact button pressed");
                                     EPrompt.SetActive(false);
@@ -113,23 +113,23 @@ public class TriggerStay : MonoBehaviour
                                     {
                                         Debug.Log("Interact button pressed");
                                         EPrompt.SetActive(false);
-                                        SignalisPuzzleCanvas2.SetActive(true);
+                                        Signalis_Puzzle_Canvas_2.SetActive(true);
                                     }
                                     else
                                     {
-                                        if ((other.tag == "UnpoweredDoor") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+                                        if ((other.tag == "Unpowered_Door") && (playerInput.actions["Interact"].WasPressedThisFrame()))
                                         {
                                             Debug.Log("Interact button pressed");
                                             EPrompt.SetActive(false);
-                                            UnpoweredCanvas.SetActive(true);
+                                            Unpowered_Canvas.SetActive(true);
                                         }
                                         else
                                         {
-                                            if ((other.tag == "ComputerRoom") && (playerInput.actions["Interact"].WasPressedThisFrame()))
+                                            if ((other.tag == "Computer_Room") && (playerInput.actions["Interact"].WasPressedThisFrame()))
                                             {
                                                 Debug.Log("Interact button pressed");
                                                 EPrompt.SetActive(false);
-                                                ComputerKeycardsCanvas.SetActive(true);
+                                                Computer_Keycards_Canvas.SetActive(true);
                                             }
                                             else
                                             {
@@ -137,14 +137,14 @@ public class TriggerStay : MonoBehaviour
                                                 {
                                                     Debug.Log("Interact button pressed");
                                                     EPrompt.SetActive(false);
-                                                    BridgeCanvas.SetActive(true);
+                                                    Bridge_Canvas.SetActive(true);
                                                 }
                                                 else
                                                 {
-                                                    if (other.tag == "EndLevel")
+                                                    if (other.tag == "End_Level")
                                                     {
                                                         Debug.Log("Entered Level End Area");
-                                                        EndLevelCanvas.SetActive(true);
+                                                        End_Level_Canvas.SetActive(true);
                                                         Player.SetActive(false);
                                                     }
                                                 }
@@ -170,52 +170,52 @@ public class TriggerStay : MonoBehaviour
         }
         else
         {
-            if ((other.tag == "CrewTrigger"))
+            if ((other.tag == "Crew_Trigger"))
             {
                 Debug.Log("Player exited trigger");
                 CrewCanvas.SetActive(false);
             }
             else
             {
-                if ((other.tag == "AirlockTrigger"))
+                if ((other.tag == "Airlock_Trigger"))
                 {
                     Debug.Log("Player exited trigger");
-                    AirlockCanvas.SetActive(false);
+                    Airlock_Canvas.SetActive(false);
                 }
                 else
                 {
-                    if ((other.tag == "CivOperation"))
+                    if ((other.tag == "Civ_Operation"))
                     {
                         Debug.Log("Player exited trigger");
                         CivCryoOp.SetActive(false);
                     }
                     else
                     {
-                        if((other.tag == "CrewOperation"))
+                        if((other.tag == "Crew_Operation"))
                         {
                             Debug.Log("Player exited trigger");
                             CrewCryoOp.SetActive(false);
                         }
                         else
                         {
-                            if ((other.tag == "UnpoweredDoor"))
+                            if ((other.tag == "Unpowered_Door"))
                             {
                                 Debug.Log("Player exited trigger");
-                                UnpoweredCanvas.SetActive(false);
+                                Unpowered_Canvas.SetActive(false);
                             }
                             else
                             {
-                                if ((other.tag == "ComputerRoom"))
+                                if ((other.tag == "Computer_Room"))
                                 {
                                     Debug.Log("Player exited trigger");
-                                    ComputerKeycardsCanvas.SetActive(false);
+                                    Computer_Keycards_Canvas.SetActive(false);
                                 }
                                 else
                                 {
                                     if ((other.tag == "Bridge"))
                                     {
                                         Debug.Log("Player exited trigger");
-                                        BridgeCanvas.SetActive(false);
+                                        Bridge_Canvas.SetActive(false);
                                     }
                                 }
                             }

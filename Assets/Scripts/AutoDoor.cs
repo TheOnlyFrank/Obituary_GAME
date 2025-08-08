@@ -62,7 +62,7 @@ public class AutoDoor : MonoBehaviour
         }
     }
 
-    public bool moving_Out
+    public bool movingOut
     {
         get { return moving; }
         set { moving = value; }
