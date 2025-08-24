@@ -2,34 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door_Controller : MonoBehaviour
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-
-public class Locked_Door : MonoBehaviour, IInteractable
+public class Door_Controller : MonoBehaviour, IInteractable
 {
 
     // This script is the master control script for all door types - always unlocked, locked doors requiring a key (specific or otherwise).
     // The below script is to be used as a guide, once finalised it is to be placed into the door prefab and then the other existing door scripts can be removed from the project (as they will no longer be required).
     //Door interaction will be handled by use of an interface triggered method, to standardise the player interactions with game elements.
 
+    public Inventory_Manager inventory; 
     public Vector3 endPos;
     public Vector3 startPos;
     public float speed = 1.0f;
+    public float delay = 0.0f;
+    //public AudioClip accessDeniedSound;
+
 
     private bool moving = false;
     private bool opening = true;
-    public float delay = 0.0f;
+        
 
     [SerializeField] bool isLocked;
 
-    // Start is called before the first frame update
-    //   void Start()
-    //   {
-    //       startPos = transform.position;
-    //   }
+    //void Start()
+    //{
+    //    // Get or add AudioSource component to the same GameObject
+    //
+    //
+    //}
 
     // Update is called once per frame
     void Update()
@@ -82,9 +81,20 @@ public class Locked_Door : MonoBehaviour, IInteractable
         set { moving = value; }
     }
 
-    public void OnPlayerInteract(Player_Controls player)
+    public void OnPlayerInteract()
     {
-        
+        Debug.Log("Interacting");
+        if (inventory.has_Co_Pilot_Key)
+        {
+            moving_Out = true;
+            Debug.Log("Door Opening!");
+        }
+        else
+        {
+            //PlayAudioEffect(accessDeniedSound);
+            Debug.Log("Door Locked, find a Co-Pilot Key");
+        }
+
     }
 
 

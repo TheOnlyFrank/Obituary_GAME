@@ -13,10 +13,11 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
     public AudioClip turnOnSound;
     public AudioClip turnOffSound;
     public AudioClip accessDeniedSound;
+    public AudioClip interactSound;
     public Inventory_Manager inventory;
     public SwitchScene switchScene;
     public GameObject Inventory_Canvas;
-    //public GameObject MedBayCanvas;
+    
 
     // Private variables
     [SerializeField] private float moveSpeed = 3f;
@@ -133,9 +134,9 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
 
     void HandleFlashlight()
     {
-        if (inventory.has_Flashlight)
+        if (playerInput.actions["Flashlight"].WasPressedThisFrame())
         {
-            if (playerInput.actions["Flashlight"].WasPressedThisFrame())
+            if (inventory.has_Flashlight)
             {
                 if (flashlight.enabled == false)
                 {
@@ -190,6 +191,7 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.tag == "Auto_Door")
         {
             if (other.GetComponent<AutoDoor>().movingOut == false)
@@ -197,114 +199,98 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
                 other.GetComponent<AutoDoor>().movingOut = true;
             }
         }
-        else
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        Debug.Log("Collision Entry Detected");
+        
+        if (playerInput.actions["Interact"].WasPressedThisFrame())
         {
-            if (other.tag == "Reactor_Door")
+            Debug.Log("Pre-Interaction Started");
+            PlayAudioEffect(interactSound);
+            if (other.TryGetComponent(out IInteractable interactableObject))
             {
-                if (inventory.has_Reactor_Key)
-                {
-                    if (other.GetComponent<Reactor_Door>().moving_Out == false)
-                    {
-                        other.GetComponent<Reactor_Door>().moving_Out = true;
-                    }
-                }
-                else
-                {
-                    PlayAudioEffect(accessDeniedSound);
+                
+                
+                    interactableObject.OnPlayerInteract();
+                    Debug.Log("Interaction Started");
                 }
             }
-            else
-            {
-                if (other.tag == "Locked_Door")
-                {
-                    if (inventory.has_Co_Pilot_Key)
-                    {
-                        if (other.GetComponent<Locked_Door>().moving_Out == false)
-                        {
-                            other.GetComponent<Locked_Door>().moving_Out = true;
-                        }
-                    }
-                    else
-                    {
-                        PlayAudioEffect(accessDeniedSound);
-                    }
-                }
-                else
-                {
-                    if (other.tag == "Blank_Key")
-                    {
-                        inventory.has_Blank_Key = true;
-                        Debug.Log("You got the Blank key!");
-                        Destroy(other.gameObject);
-                    }
-                    else
-                    {
-                        if (other.tag == "Co-Pilot_Key")
-                        {
-                            inventory.has_Co_Pilot_Key = true;
-                            Debug.Log("You got the Co-Pilot key!");
-                            Destroy(other.gameObject);
-                        }
-                        else
-                        {
-                            if (other.tag == "Flashlight")
-                            {
-                                inventory.has_Flashlight = true;
-                                Debug.Log("You got the flashlight!");
-                                Destroy(other.gameObject);
-                            }
-                            else
-                            {
-                                if (other.tag == "Reactor_Key")
-                                {
-                                    inventory.has_Reactor_Key = true;
-                                    Debug.Log("You got the Reactor key!");
-                                    Destroy(other.gameObject);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+
+
+        //else
+        //{
+        //    if (other.tag == "Reactor_Door")
+        //    {
+        //        if (inventory.has_Reactor_Key)
+        //        {
+        //            if (other.GetComponent<Reactor_Door>().moving_Out == false)
+        //            {
+        //                other.GetComponent<Reactor_Door>().moving_Out = true;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            PlayAudioEffect(accessDeniedSound);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (other.tag == "Locked_Door")
+        //        {
+        //            if (inventory.has_Co_Pilot_Key)
+        //            {
+        //                if (other.GetComponent<Locked_Door>().moving_Out == false)
+        //                {
+        //                    other.GetComponent<Locked_Door>().moving_Out = true;
+        //                }
+        //            }
+        //            else
+        //            {
+        //                PlayAudioEffect(accessDeniedSound);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if (other.tag == "Blank_Key")
+        //            {
+        //                inventory.has_Blank_Key = true;
+        //                Debug.Log("You got the Blank key!");
+        //                Destroy(other.gameObject);
+        //            }
+        //            else
+        //            {
+        //                if (other.tag == "Co-Pilot_Key")
+        //                {
+        //                    inventory.has_Co_Pilot_Key = true;
+        //                    Debug.Log("You got the Co-Pilot key!");
+        //                    Destroy(other.gameObject);
+        //                }
+        //                else
+        //                {
+        //                    if (other.tag == "Flashlight")
+        //                    {
+        //                        inventory.has_Flashlight = true;
+        //                        Debug.Log("You got the flashlight!");
+        //                        Destroy(other.gameObject);
+        //                    }
+        //                    else
+        //                    {
+        //                        if (other.tag == "Reactor_Key")
+        //                        {
+        //                            inventory.has_Reactor_Key = true;
+        //                            Debug.Log("You got the Reactor key!");
+        //                            Destroy(other.gameObject);
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
 
     }
 
-    // private void OnTriggerStay(Collider other)
-    // {
-    //     if ((other.tag == "Wire_Box") && (playerInput.actions["Interact"].WasPressedThisFrame()))
-    //     {
-    //         Debug.Log("Interact button pressed");
-    //         //switchScene.ChangeScene();
-    //         //SaveData();
-    //         SceneManager.LoadScene("Wire_Puzzle", LoadSceneMode.Single);
-    //     }
-    //     else
-    //     {
-    //         if ((other.tag == "MedBayRubble") && (playerInput.actions["Interact"].WasPressedThisFrame()))
-    //         {
-    //             Debug.Log("Interact button pressed");
-    //             MedBayCanvas.SetActive(true);
-    //         }
-    //     }
-    // }
 
-    // private void OnTriggerExit(Collider other)
-    // {
-    //    if ((other.tag == "MedBayRubble"))
-    //         {
-    //             Debug.Log("Player exited trigger");
-    //             MedBayCanvas.SetActive(false);
-    //         }
-    // }
-
-    public void LoadData(Game_Data data)
-    {
-        this.transform.position = data.playerPosition;
-    }
-
-    public void SaveData(ref Game_Data data)
-    {
-        data.playerPosition = this.transform.position;
-    }
 }

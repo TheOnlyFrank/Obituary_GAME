@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Locked_Door : MonoBehaviour, IInteractable
+public class Locked_Door : MonoBehaviour//, IInteractable
 {
 
     public Vector3 endPos;
@@ -73,10 +73,10 @@ public class Locked_Door : MonoBehaviour, IInteractable
         set { moving = value; }
     }
 
-    public void OnPlayerInteract(Player_Controls player)
-    {
-        
-    }
+    //public void OnPlayerInteract(Player_Controls player)
+    //{
+    //    
+    //}
 
 
 }
