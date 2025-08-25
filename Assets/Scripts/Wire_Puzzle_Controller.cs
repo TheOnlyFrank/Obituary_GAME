@@ -74,7 +74,7 @@ public class Wire_Puzzle_Controller : MonoBehaviour
             winCondition = true;
             Debug.Log("Puzzle solved correctly!");
             Wire_Puzzle_Canvas.SetActive(false);
-            Specific_Door.GetComponent<AutoDoor>().enabled = true;
+            Specific_Door.GetComponent<Door_Controller>().enabled = true;
            // Time.timeScale = 1;
         }
     }

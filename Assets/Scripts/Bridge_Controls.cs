@@ -94,7 +94,7 @@ public class Bridge_Controls : MonoBehaviour
 
     public void Airlock_Button()
     {
-        AirlockDoor.GetComponent<AutoDoor>().enabled = true;
+        AirlockDoor.GetComponent<Door_Controller>().enabled = true;
         BridgeCanvas.SetActive(false);
         OutsideLight.SetActive(true);
         Destroy(AirlockTrigger);

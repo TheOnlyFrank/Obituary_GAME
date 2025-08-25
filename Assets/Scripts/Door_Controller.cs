@@ -14,21 +14,27 @@ public class Door_Controller : MonoBehaviour, IInteractable
     public Vector3 startPos;
     public float speed = 1.0f;
     public float delay = 0.0f;
-    //public AudioClip accessDeniedSound;
+    public AudioClip accessDeniedSound;
 
 
     private bool moving = false;
     private bool opening = true;
-        
+    private AudioSource audioSource;
+
 
     [SerializeField] bool isLocked;
 
-    //void Start()
-    //{
-    //    // Get or add AudioSource component to the same GameObject
-    //
-    //
-    //}
+    void Start()
+    {
+        // Get or add AudioSource component to the same GameObject
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+        }
+
+    }
 
     // Update is called once per frame
     void Update()
@@ -84,18 +90,33 @@ public class Door_Controller : MonoBehaviour, IInteractable
     public void OnPlayerInteract()
     {
         Debug.Log("Interacting");
-        if (inventory.has_Co_Pilot_Key)
+        if (isLocked)
+        {
+            if (inventory.has_Co_Pilot_Key)
+            {
+                moving_Out = true;
+                Debug.Log("Door Opening!");
+            }
+            else
+            {
+                PlayAudioEffect(accessDeniedSound);
+                Debug.Log("Door Locked, find a Co-Pilot Key");
+            }
+        }
+        else
         {
             moving_Out = true;
             Debug.Log("Door Opening!");
         }
-        else
-        {
-            //PlayAudioEffect(accessDeniedSound);
-            Debug.Log("Door Locked, find a Co-Pilot Key");
-        }
-
     }
 
+    private void PlayAudioEffect(AudioClip clip)
+    {
+        if (clip != null)
+        {
+            audioSource.clip = clip;
+            audioSource.Play();
+        }
+    }
 
 }
