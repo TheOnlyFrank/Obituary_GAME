@@ -203,7 +203,7 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("Collision Entry Detected");
+        //Debug.Log("Collision Entry Detected");
         
         if (playerInput.actions["Interact"].WasPressedThisFrame())
         {

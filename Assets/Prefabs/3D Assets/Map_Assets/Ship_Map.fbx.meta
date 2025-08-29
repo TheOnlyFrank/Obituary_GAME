@@ -3,7 +3,12 @@ guid: 91ccfecbeda7e4d44b8bb88d65f279fe
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LOWER_Walls_MAT
+    second: {fileID: 2100000, guid: 3f422f5c131bfae48a4fdd041b4b253b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

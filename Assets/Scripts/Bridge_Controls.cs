@@ -12,6 +12,7 @@ public class Bridge_Controls : MonoBehaviour
     [SerializeField] GameObject AirlockTrigger;
     [SerializeField] GameObject OutsideLight;
     [SerializeField] GameObject AllTriggers;
+    [SerializeField] GameObject ShipExitTrigger;
 
     public Inventory_Manager inventory;
     public bool cP_Card;
@@ -98,6 +99,7 @@ public class Bridge_Controls : MonoBehaviour
         BridgeCanvas.SetActive(false);
         OutsideLight.SetActive(true);
         Destroy(AirlockTrigger);
+        ShipExitTrigger.SetActive(true);
     }
 
 }
