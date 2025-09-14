@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+//using TMPro;
 
 public class InvMan : MonoBehaviour
 {
@@ -19,7 +20,11 @@ public class InvMan : MonoBehaviour
         //set all the slots
         for (int i = 0; i < slotHolder.transform.childCount; i++)
             slots[i] = slotHolder.transform.GetChild(i).gameObject;
-        
+
+        RefreshUI();
+
+        Add(itemToAdd);
+        Remove(itemToRemove);
     }
 
     public void RefreshUI()
@@ -28,13 +33,15 @@ public class InvMan : MonoBehaviour
         {
             try
             {
-                slots[i].transform.GetChild(0).GetChild(0).GetComponent<Image>().enabled = true;
-                slots[i].transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = items[i].itemIcon;
+                slots[i].transform.GetChild(0).GetComponent<Image>().enabled = true;
+                slots[i].transform.GetChild(0).GetComponent<Image>().sprite = items[i].itemIcon;
+                //slots[i].transform.GetChild(0).GetComponent<TMP_Text>().text = "0";
             }
             catch
             {
-                slots[i].transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = null; 
-                slots[i].transform.GetChild(0).GetChild(0).GetComponent<Image>().enabled = false;
+                slots[i].transform.GetChild(0).GetComponent<Image>().sprite = null; 
+                slots[i].transform.GetChild(0).GetComponent<Image>().enabled = false;
+                //slots[i].transform.GetChild(0).GetComponent<TMP_Text>().text = " ";
             }
         }
     }
