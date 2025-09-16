@@ -1,0 +1,375 @@
+fileFormatVersion: 2
+guid: 896ecea79d370c743b07567d47a28ed2
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: StabiliserPuzzleAssets_0
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 913
+        width: 230
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af71d263dd42d8443bb1e1e8458485b4
+      internalID: -1919920124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StabiliserPuzzleAssets_1
+      rect:
+        serializedVersion: 2
+        x: 1419
+        y: 713
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7cc2b873c1c9b449903eedf6f8470fc
+      internalID: 216663609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StabiliserPuzzleAssets_10
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 834
+        width: 458
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 997462fcbd30e1a4e96afe39b317a9cd
+      internalID: -947891069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StabiliserPuzzleAssets_18
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 625
+        width: 230
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bd1e9e86bb6cb240b8ce2708657fa0d
+      internalID: -28795971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StabiliserPuzzleAssets_19
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 533
+        width: 454
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c90e3dd1f2b9e640bd3baadda34c638
+      internalID: -267563574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StabiliserPuzzleAssets_35
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 351
+        width: 230
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45a790d369eea9442bd14bbf342ad7eb
+      internalID: 1722074491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StabiliserPuzzleAssets_36
+      rect:
+        serializedVersion: 2
+        x: 1413
+        y: 115
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c35bd7fc6adc294bb9e0faa7ffc5ce2
+      internalID: -680989177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StabiliserPuzzleAssets_37
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 79
+        width: 230
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fae7039f6179dba4e86659c4f60982fd
+      internalID: 722948124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StabiliserPuzzleAssets_38
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 109
+        width: 526
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c624400c169642d4aa70e162a94e6c6e
+      internalID: -265145555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 3ee6aff2179fdae429a5bcbd902a3af3
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      StabiliserPuzzleAssets_30: -1259363679
+      StabiliserPuzzleAssets_34: 1886921306
+      StabiliserPuzzleAssets_6: -654088083
+      StabiliserPuzzleAssets_14: -1757070370
+      StabiliserPuzzleAssets_38: -265145555
+      StabiliserPuzzleAssets_21: 1515003614
+      StabiliserPuzzleAssets_1: 216663609
+      StabiliserPuzzleAssets_27: -455018615
+      StabiliserPuzzleAssets_15: -1542906681
+      StabiliserPuzzleAssets_5: -1848206581
+      StabiliserPuzzleAssets_22: -1226162415
+      StabiliserPuzzleAssets_11: 1014483030
+      StabiliserPuzzleAssets_7: 233391030
+      StabiliserPuzzleAssets_37: 722948124
+      StabiliserPuzzleAssets_23: -1110069250
+      StabiliserPuzzleAssets_9: -562641033
+      StabiliserPuzzleAssets_10: -947891069
+      StabiliserPuzzleAssets_24: -546221473
+      StabiliserPuzzleAssets_32: -1785420351
+      StabiliserPuzzleAssets_18: -28795971
+      StabiliserPuzzleAssets_20: 1994648695
+      StabiliserPuzzleAssets_28: -482090663
+      StabiliserPuzzleAssets_19: -267563574
+      StabiliserPuzzleAssets_26: -1757595295
+      StabiliserPuzzleAssets_8: -1055095550
+      StabiliserPuzzleAssets_33: -1173813480
+      StabiliserPuzzleAssets_29: -223144516
+      StabiliserPuzzleAssets_35: 1722074491
+      StabiliserPuzzleAssets_0: -1919920124
+      StabiliserPuzzleAssets_2: -772500657
+      StabiliserPuzzleAssets_3: -243893095
+      StabiliserPuzzleAssets_4: 1685386887
+      StabiliserPuzzleAssets_13: -2107936681
+      StabiliserPuzzleAssets_36: -680989177
+      StabiliserPuzzleAssets_25: -1777342996
+      StabiliserPuzzleAssets_17: 524075673
+      StabiliserPuzzleAssets_12: 347379127
+      StabiliserPuzzleAssets_31: -505275388
+      StabiliserPuzzleAssets_16: 2104164604
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
