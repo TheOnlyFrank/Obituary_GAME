@@ -477,6 +477,76 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UIControls"",
+            ""id"": ""d5144f43-8aac-4412-8100-51a4aebada59"",
+            ""actions"": [
+                {
+                    ""name"": ""UI_Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""14e1e0e2-575d-4850-b759-d4df70fe9b15"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MousePosition"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""50b61aa4-2088-458e-8db7-b126cbecdb9a"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""e571d066-2f98-477d-b2a6-6af62ce24a5e"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBM"",
+                    ""action"": ""UI_Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9adf976a-5b94-473f-936d-976b3436dfa8"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""UI_Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""04e758d6-9ae2-4369-b6cf-dfcc81ac6c65"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBM"",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db755cfe-8b3d-45d7-8279-90aa16285766"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -524,6 +594,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Controls_Run = m_Controls.FindAction("Run", throwIfNotFound: true);
         m_Controls_Inventory_Menu = m_Controls.FindAction("Inventory_Menu", throwIfNotFound: true);
         m_Controls_Pause_Menu = m_Controls.FindAction("Pause_Menu", throwIfNotFound: true);
+        // UIControls
+        m_UIControls = asset.FindActionMap("UIControls", throwIfNotFound: true);
+        m_UIControls_UI_Select = m_UIControls.FindAction("UI_Select", throwIfNotFound: true);
+        m_UIControls_MousePosition = m_UIControls.FindAction("MousePosition", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -708,6 +782,47 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public ControlsActions @Controls => new ControlsActions(this);
+
+    // UIControls
+    private readonly InputActionMap m_UIControls;
+    private IUIControlsActions m_UIControlsActionsCallbackInterface;
+    private readonly InputAction m_UIControls_UI_Select;
+    private readonly InputAction m_UIControls_MousePosition;
+    public struct UIControlsActions
+    {
+        private @PlayerControls m_Wrapper;
+        public UIControlsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @UI_Select => m_Wrapper.m_UIControls_UI_Select;
+        public InputAction @MousePosition => m_Wrapper.m_UIControls_MousePosition;
+        public InputActionMap Get() { return m_Wrapper.m_UIControls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIControlsActions set) { return set.Get(); }
+        public void SetCallbacks(IUIControlsActions instance)
+        {
+            if (m_Wrapper.m_UIControlsActionsCallbackInterface != null)
+            {
+                @UI_Select.started -= m_Wrapper.m_UIControlsActionsCallbackInterface.OnUI_Select;
+                @UI_Select.performed -= m_Wrapper.m_UIControlsActionsCallbackInterface.OnUI_Select;
+                @UI_Select.canceled -= m_Wrapper.m_UIControlsActionsCallbackInterface.OnUI_Select;
+                @MousePosition.started -= m_Wrapper.m_UIControlsActionsCallbackInterface.OnMousePosition;
+                @MousePosition.performed -= m_Wrapper.m_UIControlsActionsCallbackInterface.OnMousePosition;
+                @MousePosition.canceled -= m_Wrapper.m_UIControlsActionsCallbackInterface.OnMousePosition;
+            }
+            m_Wrapper.m_UIControlsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @UI_Select.started += instance.OnUI_Select;
+                @UI_Select.performed += instance.OnUI_Select;
+                @UI_Select.canceled += instance.OnUI_Select;
+                @MousePosition.started += instance.OnMousePosition;
+                @MousePosition.performed += instance.OnMousePosition;
+                @MousePosition.canceled += instance.OnMousePosition;
+            }
+        }
+    }
+    public UIControlsActions @UIControls => new UIControlsActions(this);
     private int m_GamepadSchemeIndex = -1;
     public InputControlScheme GamepadScheme
     {
@@ -741,5 +856,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnRun(InputAction.CallbackContext context);
         void OnInventory_Menu(InputAction.CallbackContext context);
         void OnPause_Menu(InputAction.CallbackContext context);
+    }
+    public interface IUIControlsActions
+    {
+        void OnUI_Select(InputAction.CallbackContext context);
+        void OnMousePosition(InputAction.CallbackContext context);
     }
 }
