@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   itemName: Pistol
+  description: A simple, but effective, service weapon.
   itemIcon: {fileID: 21300000, guid: 8a2ffbed2dfa8e943b38fa198b8632d7, type: 3}
+  model: {fileID: 1037772161813802266, guid: f82a255d6d5bea04e8dd5e119bc80f52, type: 3}
+  isStackable: 1
   tooltype: 1

@@ -12,8 +12,7 @@ public class Item_Pickup : MonoBehaviour, IInteractable
     [SerializeField] private bool flashlight;
     [SerializeField] private bool blankKey;
 
-
-    // Start is called before the first frame update
+        // Start is called before the first frame update
     public void OnPlayerInteract()
     {
         Debug.Log("Interacting");

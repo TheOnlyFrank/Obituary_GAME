@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 
 public class InvMan : MonoBehaviour
 {
+    [SerializeField] private GameObject itemCursor;
     [SerializeField] private GameObject slotHolder;
     [SerializeField] private ItemClass itemToAdd;
     [SerializeField] private ItemClass itemToRemove;
@@ -56,7 +57,14 @@ public class InvMan : MonoBehaviour
 
     private void Update()
     {
+        Vector2 mouseScreenPosition = playerInput.actions["MousePosition"].ReadValue<Vector2>();
 
+        itemCursor.SetActive(isMovingItem);
+        itemCursor.transform.position = mouseScreenPosition;
+        if (isMovingItem)
+        {
+            itemCursor.GetComponent<Image>().sprite = movingSlot.GetItem().itemIcon;
+        }
         //if (playerInput.actions["UI_Select"].IsPressed())
         
         //var selectSlot = playerInput.actions["UI_Select"];
@@ -66,7 +74,7 @@ public class InvMan : MonoBehaviour
         {
             //find the closest slot (the slot we clicked on)
             //Debug.Log(GetClosestSlot().GetItem());
-            if (!isMovingItem)
+            if (isMovingItem)
             {
                 //end item move
                 EndItemMove();
@@ -105,7 +113,7 @@ public class InvMan : MonoBehaviour
         //check in inventory contains item
         SlotClass slot = Contains(item);
         if (slot != null && slot.GetItem().isStackable)
-            slot.AddQuantity(1);
+            slot.AddQuantity(quantity);
         else
         {
             for (int i = 0; i < items.Length; i++)
