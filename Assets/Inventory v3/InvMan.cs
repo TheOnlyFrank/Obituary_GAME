@@ -13,6 +13,8 @@ public class InvMan : MonoBehaviour
     [SerializeField] private GameObject slotHolder;
     [SerializeField] private ItemClass itemToAdd;
     [SerializeField] private ItemClass itemToRemove;
+    [SerializeField] private Player_Health playerHealth;
+    [SerializeField] private GameObject healthIcon;
 
     [SerializeField] private SlotClass[] startingItems;
 
@@ -177,6 +179,11 @@ public class InvMan : MonoBehaviour
         }
         return null;
     }
+
+   // public HealthIconUpdate()
+   // {
+   //
+   // }
     #endregion Inventory Utils
 
     #region Moving Stuff
