@@ -11,11 +11,10 @@ public class InvMan : MonoBehaviour
 {
     [SerializeField] private GameObject itemCursor;
     [SerializeField] private GameObject slotHolder;
+    [SerializeField] private GameObject centralScreen;
     [SerializeField] private ItemClass itemToAdd;
     [SerializeField] private ItemClass itemToRemove;
-    [SerializeField] private Player_Health playerHealth;
-    [SerializeField] private GameObject healthIcon;
-
+    
     [SerializeField] private SlotClass[] startingItems;
 
     private PlayerInput playerInput;
@@ -27,11 +26,14 @@ public class InvMan : MonoBehaviour
     private SlotClass movingSlot;
     private SlotClass tempSlot;
     private SlotClass originalSlot;
+    private SlotClass activeSlot;
     bool isMovingItem;
 
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
+        centralScreen.transform.GetChild(0).GetComponent<Image>().sprite = null;
+        centralScreen.transform.GetChild(1).GetComponent<TMP_Text>().text = null;
     }
 
     private void Start()
@@ -82,6 +84,7 @@ public class InvMan : MonoBehaviour
                 EndItemMove();
             }
             else
+                //UpdateCentralScreens();
                 BeginItemMove();
 
         }
@@ -112,7 +115,7 @@ public class InvMan : MonoBehaviour
 
     public bool Add(ItemClass item, int quantity)
     {
-        //check in inventory contains item
+        //check if inventory contains item
         SlotClass slot = Contains(item);
         if (slot != null && slot.GetItem().isStackable)
             slot.AddQuantity(quantity);
@@ -180,10 +183,7 @@ public class InvMan : MonoBehaviour
         return null;
     }
 
-   // public HealthIconUpdate()
-   // {
-   //
-   // }
+
     #endregion Inventory Utils
 
     #region Moving Stuff
@@ -195,6 +195,7 @@ public class InvMan : MonoBehaviour
             return false; //there is no item to move
 
         movingSlot = new SlotClass(originalSlot);
+        UpdateCentralScreens();
         originalSlot.Clear();
         isMovingItem = true;
         RefreshUI();
@@ -228,6 +229,7 @@ public class InvMan : MonoBehaviour
                     tempSlot = new SlotClass(originalSlot); // a = b
                     originalSlot.AddItem(movingSlot.GetItem(), movingSlot.GetQuantity()); // b = c
                     movingSlot.AddItem(tempSlot.GetItem(), tempSlot.GetQuantity()); // a = c
+                    UpdateCentralScreens();
                     RefreshUI();
                     return true;
 
@@ -236,6 +238,8 @@ public class InvMan : MonoBehaviour
             else //place item as usual
             {
                 originalSlot.AddItem(movingSlot.GetItem(), movingSlot.GetQuantity());
+                activeSlot = movingSlot;
+                Debug.Log("Final Active Slot is " + activeSlot.GetItem().itemName);
                 movingSlot.Clear();
             }
         }
@@ -251,7 +255,7 @@ public class InvMan : MonoBehaviour
 
         for (int i = 0; i < slots.Length; i ++)
         {
-            if (Vector2.Distance(slots[i].transform.position, mouseScreenPosition) <= 32)
+            if (Vector2.Distance(slots[i].transform.position, mouseScreenPosition) <= 72)
             {
                 return items[i];
                 break;
@@ -260,4 +264,49 @@ public class InvMan : MonoBehaviour
         return null;
     }
     #endregion Moving Stuff
+
+    #region Central Screens
+
+    private void UpdateCentralScreens() //ItemClass item)
+    {
+        //originalSlot = GetClosestSlot();
+        //if (originalSlot == null || originalSlot.GetItem() == null)
+        //{
+        //    return false; //there is no item to move
+        //}
+        //else
+        //{
+            Debug.Log("Central Screens update in progress!");
+            activeSlot = new SlotClass(movingSlot);
+            centralScreen.transform.GetChild(0).GetComponent<Image>().sprite = activeSlot.GetItem().itemIcon;
+            centralScreen.transform.GetChild(1).GetComponent<TMP_Text>().text = activeSlot.GetItem().description;
+            Debug.Log("Active Slot is " + activeSlot.GetItem().itemName);
+            Debug.Log("Original Slot is " + originalSlot.GetItem().itemName);
+        //    return false;
+        //}
+
+    }
+
+    public void DropButton()
+    {
+        //Drops the currently selected item
+        
+    }
+
+    public void EquipButton()
+    {
+        //Drops the currently selected item
+        centralScreen.transform.GetChild(0).GetComponent<Image>().sprite = activeSlot.GetItem().itemIcon;
+        
+        //Code to unequip/disable other attack types and enable equipped weapon's attack type
+    }
+
+    public void UseButton()
+    {
+        //Drops the currently selected item
+
+    }
+
+    #endregion Central Screens
+
 }
