@@ -12,9 +12,14 @@ public class InvMan : MonoBehaviour
     [SerializeField] private GameObject itemCursor;
     [SerializeField] private GameObject slotHolder;
     [SerializeField] private GameObject centralScreen;
+    [SerializeField] private GameObject buttonSlots;
+    [SerializeField] private GameObject equippedScreen;
+    [SerializeField] private GameObject playerDropPoint;
     [SerializeField] private ItemClass itemToAdd;
     [SerializeField] private ItemClass itemToRemove;
-    
+    [SerializeField] private SlotClass selectedItem;
+
+        
     [SerializeField] private SlotClass[] startingItems;
 
     private PlayerInput playerInput;
@@ -57,6 +62,10 @@ public class InvMan : MonoBehaviour
 
         Add(itemToAdd, 1);
         Remove(itemToRemove);
+
+        buttonSlots.SetActive(false);
+        centralScreen.SetActive(false);
+        equippedScreen.SetActive(false);
     }
 
     private void Update()
@@ -146,10 +155,10 @@ public class InvMan : MonoBehaviour
         SlotClass temp = Contains(item);
         if (temp != null)
         {
-            if (temp.GetQuantity() > 1)
-                temp.SubQuantity(1);
-            else
-            {
+            //if (temp.GetQuantity() > 1)
+            //    temp.SubQuantity(1);
+            //else
+            //{
                 int slotToRemoveIndex = 0;
 
                 for (int i = 0; i < items.Length; i++)
@@ -162,7 +171,7 @@ public class InvMan : MonoBehaviour
                 }
 
                 items[slotToRemoveIndex].Clear();
-            }
+            //}
         }
         else
         {
@@ -195,6 +204,7 @@ public class InvMan : MonoBehaviour
             return false; //there is no item to move
 
         movingSlot = new SlotClass(originalSlot);
+        selectedItem = new SlotClass(movingSlot);
         UpdateCentralScreens();
         originalSlot.Clear();
         isMovingItem = true;
@@ -238,8 +248,8 @@ public class InvMan : MonoBehaviour
             else //place item as usual
             {
                 originalSlot.AddItem(movingSlot.GetItem(), movingSlot.GetQuantity());
-                activeSlot = movingSlot;
-                Debug.Log("Final Active Slot is " + activeSlot.GetItem().itemName);
+                selectedItem = new SlotClass(movingSlot);
+                Debug.Log("Selected Item is " + selectedItem.GetItem().itemName);
                 movingSlot.Clear();
             }
         }
@@ -267,7 +277,7 @@ public class InvMan : MonoBehaviour
 
     #region Central Screens
 
-    private void UpdateCentralScreens() //ItemClass item)
+    public void UpdateCentralScreens()
     {
         //originalSlot = GetClosestSlot();
         //if (originalSlot == null || originalSlot.GetItem() == null)
@@ -277,33 +287,78 @@ public class InvMan : MonoBehaviour
         //else
         //{
             Debug.Log("Central Screens update in progress!");
-            activeSlot = new SlotClass(movingSlot);
-            centralScreen.transform.GetChild(0).GetComponent<Image>().sprite = activeSlot.GetItem().itemIcon;
-            centralScreen.transform.GetChild(1).GetComponent<TMP_Text>().text = activeSlot.GetItem().description;
-            Debug.Log("Active Slot is " + activeSlot.GetItem().itemName);
+        //activeSlot = new SlotClass(movingSlot);
+            centralScreen.SetActive(true);
+            centralScreen.transform.GetChild(0).GetComponent<Image>().sprite = selectedItem.GetItem().itemIcon;
+            centralScreen.transform.GetChild(1).GetComponent<TMP_Text>().text = selectedItem.GetItem().description;
+            buttonSlots.SetActive(true);
+            Debug.Log("Active Slot is " + selectedItem.GetItem().itemName);
             Debug.Log("Original Slot is " + originalSlot.GetItem().itemName);
-        //    return false;
-        //}
-
+            
+        
     }
 
     public void DropButton()
     {
         //Drops the currently selected item
-        
+        if (selectedItem != null)
+        {
+            Debug.Log("Drop Button pressed");
+            Debug.Log("Item to be dropped is " + selectedItem.GetItem().itemName);
+
+            GameObject droppedItem = new GameObject();
+            droppedItem.AddComponent<Rigidbody>();
+            //droppedItem.AddComponent<BoxCollider>();
+            //droppedItem.AddComponent<InstanceItemContainer>().item = selectedItem;
+
+            GameObject itemModel = Instantiate(selectedItem.GetItem().model, playerDropPoint.transform.position, Quaternion.identity);
+
+            Remove(selectedItem.GetItem());
+            selectedItem.Clear();
+            centralScreen.SetActive(false);
+            buttonSlots.SetActive(false);
+            //Debug.Log("Dropped is " + selectedItem.GetItem().itemName);
+            //UpdateCentralScreens();
+            //code to instantiate gameobject based on selected item reference
+            //code to clear active slot AND corresponding matching inventory slot
+        }
+        else
+        {
+            Debug.Log("No 'Drop Button' activation for you!");
+        }
     }
 
     public void EquipButton()
     {
-        //Drops the currently selected item
-        centralScreen.transform.GetChild(0).GetComponent<Image>().sprite = activeSlot.GetItem().itemIcon;
-        
-        //Code to unequip/disable other attack types and enable equipped weapon's attack type
+        //Equips the currently selected item
+        if (selectedItem.GetItem().itemName != null)
+        {
+            Debug.Log("Equip Button pressed");
+            equippedScreen.SetActive(true);
+            Debug.Log("Active item = " + selectedItem.GetItem().itemName);
+            equippedScreen.transform.GetComponent<Image>().sprite = selectedItem.GetItem().itemIcon;
+
+            //Code to unequip/disable other attack types and enable equipped weapon's attack type
+        }
+        else
+        {
+            Debug.Log("No active item recognised!");
+        }
     }
 
     public void UseButton()
     {
-        //Drops the currently selected item
+        //Uses the currently selected item (if consumable item type)
+        if (selectedItem != null)
+        {
+            Debug.Log("Use Button pressed");
+            //code to apply effect of item to be used
+            //call subquantity function for matching inventory slot item (see searching for matching item script section)
+        }
+        else
+        {
+            Debug.Log("No 'Use Button' activation for you!");
+        }
 
     }
 
