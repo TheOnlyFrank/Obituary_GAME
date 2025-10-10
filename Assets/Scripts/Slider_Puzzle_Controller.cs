@@ -174,5 +174,4 @@ public class Slider_Puzzle_Controller : MonoBehaviour
             Destroy(Crew_Cryo_Trigger);
         }
     }
-
 }
