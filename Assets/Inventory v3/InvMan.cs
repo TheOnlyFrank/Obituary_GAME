@@ -306,12 +306,13 @@ public class InvMan : MonoBehaviour
             Debug.Log("Drop Button pressed");
             Debug.Log("Item to be dropped is " + selectedItem.GetItem().itemName);
 
-            GameObject droppedItem = new GameObject();
-            droppedItem.AddComponent<Rigidbody>();
+            //GameObject droppedItem = new GameObject();
+            //droppedItem.AddComponent<Rigidbody>();
             //droppedItem.AddComponent<BoxCollider>();
             //droppedItem.AddComponent<InstanceItemContainer>().item = selectedItem;
 
             GameObject itemModel = Instantiate(selectedItem.GetItem().model, playerDropPoint.transform.position, Quaternion.identity);
+            itemModel.GetComponent<Item_Pickup>().inventoryManagers=GameObject.Find("Managers");
 
             Remove(selectedItem.GetItem());
             selectedItem.Clear();
