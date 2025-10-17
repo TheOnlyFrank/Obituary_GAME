@@ -17,7 +17,9 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
     public Inventory_Manager inventory;
     public SwitchScene switchScene;
     public GameObject Inventory_Canvas;
-    
+
+    public GameObject shotgunConeCollider;
+    public Transform playerWeapon;
 
     // Private variables
     [SerializeField] private float moveSpeed = 3f;
@@ -26,6 +28,8 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
     [SerializeField] private float gamepadRotateSmoothing = 1000f;
 
     [SerializeField] private bool isGamepad;
+
+    
 
 
     private Vector2 movement;
@@ -80,6 +84,7 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
         HandleRotation();
         HandleFlashlight();
         OpenInventory();
+        Attack();
     }
 
     void HandleInput()
@@ -154,7 +159,7 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
 
     void OpenInventory()
     {
-        if (playerInput.actions["Inventory_Menu"].WasPressedThisFrame())
+        if (playerInput.actions["Inventory_Menu"].WasPressedThisFrame() || playerInput.actions["UI_Close"].WasPressedThisFrame() )
         {
             if (Inventory_Canvas.activeSelf)
             {
@@ -166,6 +171,29 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
                 Inventory_Canvas.SetActive(true);
                 //Time.timeScale = 0;
             }
+        }
+    }
+
+    void Attack()
+    {
+        if (playerInput.actions["Shoot"].WasPressedThisFrame())
+        {
+            //Pistol Attack function here
+            //GameObject newCannonBall = Instantiate(cannonBallPrefab, playerWeapon.position, Quaternion.identity);
+            //Rigidbody rb = newCannonBall.GetComponent<Rigidbody>();
+            //if (rb != null)
+            //{
+            //    rb.AddForce(cannon.transform.forward * launchForce); // Note the negative sign, since we rotated the cannon 180 degrees
+            //}
+            //
+            //Destroy(newCannonBall, 50f);
+
+            //Shotgun Attack function
+            GameObject shotgunBlast = Instantiate(shotgunConeCollider, playerWeapon.position, playerWeapon.rotation);
+            Debug.Log("BANG!");
+            Destroy(shotgunBlast, 0.01f);
+
+            //Melee Attack function
         }
     }
 
@@ -217,79 +245,7 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
                     Debug.Log("Interaction Started");
                 }
             }
-
-
-        //else
-        //{
-        //    if (other.tag == "Reactor_Door")
-        //    {
-        //        if (inventory.has_Reactor_Key)
-        //        {
-        //            if (other.GetComponent<Reactor_Door>().moving_Out == false)
-        //            {
-        //                other.GetComponent<Reactor_Door>().moving_Out = true;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            PlayAudioEffect(accessDeniedSound);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (other.tag == "Locked_Door")
-        //        {
-        //            if (inventory.has_Co_Pilot_Key)
-        //            {
-        //                if (other.GetComponent<Locked_Door>().moving_Out == false)
-        //                {
-        //                    other.GetComponent<Locked_Door>().moving_Out = true;
-        //                }
-        //            }
-        //            else
-        //            {
-        //                PlayAudioEffect(accessDeniedSound);
-        //            }
-        //        }
-        //        else
-        //        {
-        //            if (other.tag == "Blank_Key")
-        //            {
-        //                inventory.has_Blank_Key = true;
-        //                Debug.Log("You got the Blank key!");
-        //                Destroy(other.gameObject);
-        //            }
-        //            else
-        //            {
-        //                if (other.tag == "Co-Pilot_Key")
-        //                {
-        //                    inventory.has_Co_Pilot_Key = true;
-        //                    Debug.Log("You got the Co-Pilot key!");
-        //                    Destroy(other.gameObject);
-        //                }
-        //                else
-        //                {
-        //                    if (other.tag == "Flashlight")
-        //                    {
-        //                        inventory.has_Flashlight = true;
-        //                        Debug.Log("You got the flashlight!");
-        //                        Destroy(other.gameObject);
-        //                    }
-        //                    else
-        //                    {
-        //                        if (other.tag == "Reactor_Key")
-        //                        {
-        //                            inventory.has_Reactor_Key = true;
-        //                            Debug.Log("You got the Reactor key!");
-        //                            Destroy(other.gameObject);
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
+            
     }
 
 
