@@ -17,6 +17,9 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
     public Inventory_Manager inventory;
     public SwitchScene switchScene;
     public GameObject Inventory_Canvas;
+    public GameObject cannonBallPrefab;
+    public float launchForce;
+    public string weaponType;
 
     public GameObject shotgunConeCollider;
     public Transform playerWeapon;
@@ -31,7 +34,6 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
 
     
 
-
     private Vector2 movement;
     private Vector2 aim;
     private Vector3 playerVelocity;
@@ -41,6 +43,7 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
     private PlayerInput playerInput;
     private Light flashlight;
     private AudioSource audioSource;
+    private InvMan invMan;
     
 
 
@@ -176,24 +179,49 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
 
     void Attack()
     {
+        
+            //string weaponType = invMan.equippedItem.GetItem().itemName.ToString();
+            //Debug.Log("" + weaponType);
+        
         if (playerInput.actions["Shoot"].WasPressedThisFrame())
         {
-            //Pistol Attack function here
-            //GameObject newCannonBall = Instantiate(cannonBallPrefab, playerWeapon.position, Quaternion.identity);
-            //Rigidbody rb = newCannonBall.GetComponent<Rigidbody>();
-            //if (rb != null)
-            //{
-            //    rb.AddForce(cannon.transform.forward * launchForce); // Note the negative sign, since we rotated the cannon 180 degrees
-            //}
-            //
-            //Destroy(newCannonBall, 50f);
+            //if (invMan.equippedItem.GetItem().itemName == "Pistol")      //Pistol Attack function here
+            if (weaponType.Contains("Pistol"))
+            {
+                GameObject newCannonBall = Instantiate(cannonBallPrefab, playerWeapon.position, Quaternion.identity);
+                Rigidbody rb = newCannonBall.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    rb.AddForce(playerWeapon.transform.forward * launchForce); // Note the negative sign, since we rotated the cannon 180 degrees
+                }
+                Debug.Log("BANG!");
+                Destroy(newCannonBall, 50f);
+            }
+            else
+            {
+                //if (invMan.equippedItem.GetItem().itemName == "Shotgun")     //Shotgun Attack function
+                if (weaponType.Contains("Shotgun"))
+                {
+                    GameObject shotgunBlast = Instantiate(shotgunConeCollider, playerWeapon.position, playerWeapon.rotation);
+                    shotgunBlast.transform.Rotate(0, 180, 0);
+                    Debug.Log("BLAM!");
+                    Destroy(shotgunBlast, 0.01f);
+                }
+                else
+                {
+                    //if (invMan.equippedItem.GetItem().itemName == "Crowbar")       //Melee Attack function
+                    if (weaponType.Contains("Crowbar"))
+                    {
+                        //Insert melee attack function here
+                        Debug.Log("SWING!");
+                    }
+                    else
+                    {
+                        Debug.Log("NO WEAPON TO ATTACK WITH!");
+                    }
 
-            //Shotgun Attack function
-            GameObject shotgunBlast = Instantiate(shotgunConeCollider, playerWeapon.position, playerWeapon.rotation);
-            Debug.Log("BANG!");
-            Destroy(shotgunBlast, 0.01f);
-
-            //Melee Attack function
+                }
+            }
         }
     }
 

@@ -18,8 +18,8 @@ public class InvMan : MonoBehaviour
     [SerializeField] private ItemClass itemToAdd;
     [SerializeField] private ItemClass itemToRemove;
     [SerializeField] private SlotClass selectedItem;
+    
 
-        
     [SerializeField] private SlotClass[] startingItems;
 
     private PlayerInput playerInput;
@@ -32,6 +32,10 @@ public class InvMan : MonoBehaviour
     private SlotClass tempSlot;
     private SlotClass originalSlot;
     private SlotClass activeSlot;
+
+    public SlotClass equippedItem;
+    public Player_Controls player_Controls;
+
     bool isMovingItem;
 
     private void Awake()
@@ -335,9 +339,11 @@ public class InvMan : MonoBehaviour
         if (selectedItem.GetItem().itemName != null)
         {
             Debug.Log("Equip Button pressed");
+            equippedItem = selectedItem;
+            Debug.Log("Equipped item = " + equippedItem.GetItem().itemName);
+            equippedScreen.transform.GetComponent<Image>().sprite = equippedItem.GetItem().itemIcon;
             equippedScreen.SetActive(true);
-            Debug.Log("Active item = " + selectedItem.GetItem().itemName);
-            equippedScreen.transform.GetComponent<Image>().sprite = selectedItem.GetItem().itemIcon;
+            //player_Controls.weaponType.Replace("" , equippedItem.GetItem().itemName);
 
             //Code to unequip/disable other attack types and enable equipped weapon's attack type
         }
