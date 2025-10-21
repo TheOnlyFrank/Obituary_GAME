@@ -5,6 +5,7 @@ using UnityEngine;
 public class CanvasLauncher : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject thisCanvas;
+    [SerializeField] GameObject prompt;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class CanvasLauncher : MonoBehaviour, IInteractable
         {
             Debug.Log("Canvas launching!");
             thisCanvas.SetActive(true);
+            prompt.SetActive(false);
         }
 
     }

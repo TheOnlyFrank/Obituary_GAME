@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class Comms_Controls : MonoBehaviour
 {
     [SerializeField] public GameObject CommsCanvas;
-    [SerializeField] public GameObject EPrompt;
     [SerializeField] public GameObject EnableCommsScreen;
     [SerializeField] public GameObject TuningScreen;
     [SerializeField] public GameObject RBTriggers;
 
     [SerializeField] private Slider TuningSlider;
     
+    public Text valueText;
+
     public float CorrectTune;
 
     public bool winCondition;
@@ -21,9 +22,10 @@ public class Comms_Controls : MonoBehaviour
     void Start()
     {
         CommsCanvas.SetActive(true);
-        EPrompt.SetActive(false);
         EnableCommsScreen.SetActive(true);
         TuningScreen.SetActive(false);
+
+        
     }
 
     // Update is called once per frame
@@ -42,6 +44,8 @@ public class Comms_Controls : MonoBehaviour
     {
         if(TuningSlider.value != null)
         {
+            UpdateSliderValueDisplay(TuningSlider.value);
+            
             if(TuningSlider.value == CorrectTune)
             {
                 Debug.Log("Slider Value is correct: " + CorrectTune);
@@ -76,6 +80,11 @@ public class Comms_Controls : MonoBehaviour
     public void OnSliderValueChanged()
     {
         TuningRadio();
+    }
+
+    public void UpdateSliderValueDisplay(float newValue)
+    {
+        valueText.text = newValue.ToString("0");
     }
 
     void winChecker()
