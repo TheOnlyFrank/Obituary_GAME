@@ -9,13 +9,13 @@ public class Fuse_Puzzle_Controller : MonoBehaviour
     [SerializeField] public Slider lever;
     [SerializeField] public GameObject commsDoor;
     [SerializeField] public GameObject winDialogue;
+    
+    public GameObject fbTriggers;
 
     private int sliderCorrect = 1;
 
     public int interactionLimit = 7;
     public int currentInteractions = 0;
-
-    private bool hasFunctionRun = false;
 
     // Start is called before the first frame update
     public void Start()
@@ -26,9 +26,10 @@ public class Fuse_Puzzle_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Win();
-
-        hasFunctionRun = true;
+        if(currentInteractions == interactionLimit)
+        {
+            Win();
+        }
     }
 
     public void Complete_Fuse_Box()
@@ -39,8 +40,7 @@ public class Fuse_Puzzle_Controller : MonoBehaviour
             {
                 Debug.Log("Slider Value is correct: " + sliderCorrect);
                 fusePuzzle_Canvas.SetActive(false);
-                currentInteractions++;
-                ResetSlider();
+                AddInteraction(1);
             }
             else
             {
@@ -51,6 +51,7 @@ public class Fuse_Puzzle_Controller : MonoBehaviour
         {
             Debug.Log("Slider reference not set in Inspector!");
         }
+        ResetSlider();
     }
 
     void OnEnable()
@@ -88,12 +89,24 @@ public class Fuse_Puzzle_Controller : MonoBehaviour
 
     public void Win()
     {
-        if (currentInteractions == interactionLimit)
-        {
             Debug.Log("Power is on!");
 
+            Destroy(fbTriggers);
+            Destroy(fusePuzzle_Canvas);
+            
             winDialogue.SetActive(true);
+            Invoke("Delay", 3.0f);
+
             commsDoor.SetActive(false);
-        }
+    }
+
+    void Delay()
+    {
+        winDialogue.SetActive(false);
+    }
+
+    public void AddInteraction(int amount)
+    {
+        currentInteractions += amount;
     }
 }
