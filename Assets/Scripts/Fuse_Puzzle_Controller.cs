@@ -11,6 +11,7 @@ public class Fuse_Puzzle_Controller : MonoBehaviour
     [SerializeField] public GameObject winDialogue;
     
     public GameObject fbTriggers;
+    public GameObject comDoorTrigger;
 
     private int sliderCorrect = 1;
 
@@ -89,15 +90,15 @@ public class Fuse_Puzzle_Controller : MonoBehaviour
 
     public void Win()
     {
-            Debug.Log("Power is on!");
+        Debug.Log("Power is on!");
 
-            Destroy(fbTriggers);
-            Destroy(fusePuzzle_Canvas);
-            
-            winDialogue.SetActive(true);
-            Invoke("Delay", 3.0f);
+        fbTriggers.SetActive(false);
+        fusePuzzle_Canvas.SetActive(false);
+        winDialogue.SetActive(true);
+        commsDoor.SetActive(false);
+        comDoorTrigger.SetActive(false);
 
-            commsDoor.SetActive(false);
+        Invoke("Delay", 3);
     }
 
     void Delay()
