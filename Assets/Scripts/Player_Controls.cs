@@ -32,7 +32,7 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
 
     [SerializeField] private bool isGamepad;
 
-    
+
 
     private Vector2 movement;
     private Vector2 aim;
@@ -44,7 +44,8 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
     private Light flashlight;
     private AudioSource audioSource;
     private InvMan invMan;
-    
+
+
 
 
 
@@ -68,13 +69,15 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
             audioSource.playOnAwake = false;
         }
 
+        weaponType = ".";
+
     }
 
     private void OnEnable()
     {
         playerControls.Enable();
     }
-    
+
     private void OnDisable()
     {
         playerControls.Disable();
@@ -162,7 +165,7 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
 
     void OpenInventory()
     {
-        if (playerInput.actions["Inventory_Menu"].WasPressedThisFrame() || playerInput.actions["UI_Close"].WasPressedThisFrame() )
+        if (playerInput.actions["Inventory_Menu"].WasPressedThisFrame() || playerInput.actions["UI_Close"].WasPressedThisFrame())
         {
             if (Inventory_Canvas.activeSelf)
             {
@@ -179,10 +182,12 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
 
     void Attack()
     {
-        
-            //string weaponType = invMan.equippedItem.GetItem().itemName.ToString();
-            //Debug.Log("" + weaponType);
-        
+
+        //string weaponType = invMan.equippedItem.GetItem().itemName.ToString();
+        //Debug.Log("" + weaponType);
+
+        //weaponType = invMan.equippedItem.GetItem().itemName + "";
+
         if (playerInput.actions["Shoot"].WasPressedThisFrame())
         {
             //if (invMan.equippedItem.GetItem().itemName == "Pistol")      //Pistol Attack function here
@@ -260,20 +265,20 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
     private void OnTriggerStay(Collider other)
     {
         //Debug.Log("Collision Entry Detected");
-        
+
         if (playerInput.actions["Interact"].WasPressedThisFrame())
         {
             Debug.Log("Pre-Interaction Started");
             PlayAudioEffect(interactSound);
             if (other.TryGetComponent(out IInteractable interactableObject))
             {
-                
-                
-                    interactableObject.OnPlayerInteract();
-                    Debug.Log("Interaction Started");
-                }
+
+
+                interactableObject.OnPlayerInteract();
+                Debug.Log("Interaction Started");
             }
-            
+        }
+
     }
 
 

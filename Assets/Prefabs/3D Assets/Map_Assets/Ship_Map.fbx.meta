@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: DoorMAT1
+    second: {fileID: 2100000, guid: 2af9999aedf5d0c48be8bdfd04b7ba1d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: LOWER_Floor_MAT
     second: {fileID: 2100000, guid: 3a6a22181dfb1ae499c1e7e58d45e30f, type: 2}
   - first:
@@ -14,6 +19,21 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: LOWER_Walls_MAT
     second: {fileID: 2100000, guid: 3f422f5c131bfae48a4fdd041b4b253b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pipe1_MAT
+    second: {fileID: 2100000, guid: 4994c6f4164edd04d9ad235c631aed0f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UPPERFloorMAT
+    second: {fileID: 2100000, guid: c7549014b65d83e4faccaf50b9a4418d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UPPERWallsMAT
+    second: {fileID: 2100000, guid: 8ae183ca4a73ca147833862165e9df23, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
