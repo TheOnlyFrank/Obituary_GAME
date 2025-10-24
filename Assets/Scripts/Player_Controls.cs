@@ -16,10 +16,11 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
     public AudioClip interactSound;
     public Inventory_Manager inventory;
     public SwitchScene switchScene;
-    public GameObject Inventory_Canvas;
+    public GameObject GameManager;
+    public GameObject Inventory_Canvas; 
     public GameObject cannonBallPrefab;
     public float launchForce;
-    public string weaponType;
+    //public string weaponType;
 
     public GameObject shotgunConeCollider;
     public Transform playerWeapon;
@@ -43,7 +44,7 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
     private PlayerInput playerInput;
     private Light flashlight;
     private AudioSource audioSource;
-    private InvMan invMan;
+    //private InvMan invMan;
 
 
 
@@ -69,7 +70,7 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
             audioSource.playOnAwake = false;
         }
 
-        weaponType = ".";
+        //weaponType = ".";
 
     }
 
@@ -190,44 +191,50 @@ public class Player_Controls : MonoBehaviour//, I_Data_Persistence
 
         if (playerInput.actions["Shoot"].WasPressedThisFrame())
         {
-            //if (invMan.equippedItem.GetItem().itemName == "Pistol")      //Pistol Attack function here
-            if (weaponType.Contains("Pistol"))
+            if (GameManager.GetComponent<InvMan>().equippedItem.GetItem() != null)
             {
-                GameObject newCannonBall = Instantiate(cannonBallPrefab, playerWeapon.position, Quaternion.identity);
-                Rigidbody rb = newCannonBall.GetComponent<Rigidbody>();
-                if (rb != null)
+                if (GameManager.GetComponent<InvMan>().equippedItem.GetItem().itemName == "Pistol")      //Pistol Attack function here
+                                                                                                         //if (weaponType.Contains("Pistol"))
                 {
-                    rb.AddForce(playerWeapon.transform.forward * launchForce); // Note the negative sign, since we rotated the cannon 180 degrees
-                }
-                Debug.Log("BANG!");
-                Destroy(newCannonBall, 50f);
-            }
-            else
-            {
-                //if (invMan.equippedItem.GetItem().itemName == "Shotgun")     //Shotgun Attack function
-                if (weaponType.Contains("Shotgun"))
-                {
-                    GameObject shotgunBlast = Instantiate(shotgunConeCollider, playerWeapon.position, playerWeapon.rotation);
-                    shotgunBlast.transform.Rotate(0, 180, 0);
-                    Debug.Log("BLAM!");
-                    Destroy(shotgunBlast, 0.01f);
+                    GameObject newCannonBall = Instantiate(cannonBallPrefab, playerWeapon.position, Quaternion.identity);
+                    Rigidbody rb = newCannonBall.GetComponent<Rigidbody>();
+                    if (rb != null)
+                    {
+                        rb.AddForce(playerWeapon.transform.forward * launchForce); // Note the negative sign, since we rotated the cannon 180 degrees
+                    }
+                    Debug.Log("BANG!");
+                    Destroy(newCannonBall, 50f);
                 }
                 else
                 {
-                    //if (invMan.equippedItem.GetItem().itemName == "Crowbar")       //Melee Attack function
-                    if (weaponType.Contains("Crowbar"))
+                    if (GameManager.GetComponent<InvMan>().equippedItem.GetItem().itemName == "Shotgun")     //Shotgun Attack function
+                                                                                                             //if (weaponType.Contains("Shotgun"))
                     {
-                        //Insert melee attack function here
-                        Debug.Log("SWING!");
+                        GameObject shotgunBlast = Instantiate(shotgunConeCollider, playerWeapon.position, playerWeapon.rotation);
+                        shotgunBlast.transform.Rotate(0, 180, 0);
+                        Debug.Log("BLAM!");
+                        Destroy(shotgunBlast, 0.01f);
                     }
                     else
                     {
-                        Debug.Log("NO WEAPON TO ATTACK WITH!");
+                        if (GameManager.GetComponent<InvMan>().equippedItem.GetItem().itemName == "Crowbar")       //Melee Attack function
+                                                                                                                   //if (weaponType.Contains("Crowbar"))
+                        {
+                            //Insert melee attack function here
+                            Debug.Log("SWING!");
+                        }
                     }
-
                 }
             }
+            else
+            {
+                Debug.Log("NO WEAPON TO ATTACK WITH!");
+            }
         }
+
+ //               }
+ //           }
+ //       }
     }
 
     private void LookAt(Vector3 lookPoint)

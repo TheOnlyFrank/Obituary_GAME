@@ -64,8 +64,8 @@ public class InvMan : MonoBehaviour
 
         RefreshUI();
 
-        Add(itemToAdd, 1);
-        Remove(itemToRemove);
+        //Add(itemToAdd, 1);
+        //Remove(itemToRemove);
 
         buttonSlots.SetActive(false);
         centralScreen.SetActive(false);
@@ -143,7 +143,7 @@ public class InvMan : MonoBehaviour
                 }
             }
  /*           if (items.Count < slots.Length)
-            items.Add(new SlotClass(item, 1));
+            items.Add(new SlotClass(item, quantity));
             else
                 return false; */
         }
