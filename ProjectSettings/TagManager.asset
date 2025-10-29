@@ -21,6 +21,19 @@ TagManager:
   - Crew_Door
   - Signalis_Puzzle
   - Airlock_Trigger
+  - Bridge
+  - Co-Pilot_Key
+  - Crew_Cryo
+  - Airlock_Button
+  - Computer_Room
+  - Reactor
+  - Civ_Operation
+  - Bridge_Computer
+  - Unpowered_Door
+  - Beacon_Button
+  - End_Level
+  - Blank_Key
+  - Crew_Operation
   layers:
   - Default
   - TransparentFX
@@ -29,7 +42,7 @@ TagManager:
   - Water
   - UI
   - Wire_Puzzle
-  - 
+  - Radar
   - 
   - 
   - 
