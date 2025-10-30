@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Sonar_Puzzle : MonoBehaviour
 {
+    [SerializeField] private Transform pfSonarPing;
+
     private Transform sweepTransform;
     private float rotationSpeed;
     private float radarDistance;
@@ -37,14 +39,16 @@ public class Sonar_Puzzle : MonoBehaviour
             // Half rotation
             colliderList.Clear();
         }
-        RaycastHit raycastHit = Physics.Raycast(transform.position, GetVectorFromAngle(sweepTransform.eulerAngles.z),radarDistance);
-        if (raycastHit != Vector3.zero)
+
+        if (Physics.Raycast(transform.position, GetVectorFromAngle(sweepTransform.eulerAngles.z), out var raycastHit, radarDistance))
         {
             // Hit something
             if (!colliderList.Contains(raycastHit.collider))
             {
                 // Hit for first time
                 colliderList.Add(raycastHit.collider);
+
+                Instantiate(pfSonarPing, raycastHit.point, Quaternion.identity);
             }
         }
 
