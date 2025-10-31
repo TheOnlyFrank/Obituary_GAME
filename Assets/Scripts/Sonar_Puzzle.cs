@@ -14,7 +14,7 @@ public class Sonar_Puzzle : MonoBehaviour
 
     private void Awake()
     {
-        sweepTransform = transform.Find("Sweep");
+        sweepTransform = transform.Find("pivot");
         rotationSpeed = 180f;
         radarDistance = 16f;
         colliderList = new List<Collider>();

@@ -8,12 +8,12 @@ public class Slider_Puzzle_Controller : MonoBehaviour
     [SerializeField] GameObject Slider_Puzzle_Canvas;
     [SerializeField] GameObject Crew_Cryo_Door;
     [SerializeField] GameObject Crew_Cryo_Trigger;
-    
+
     public bool winCondition;
     public GameObject light;
     public Sprite redLight;
     public Sprite greenLight;
-    
+
     public Slider N2Slider;
     public Slider O2Slider;
     public Slider N2OSlider;
@@ -140,7 +140,7 @@ public class Slider_Puzzle_Controller : MonoBehaviour
         {
             N2Slider.onValueChanged.RemoveListener(delegate { OnSliderValueChanged(); });
         }
-        
+
         if (O2Slider != null)
         {
             O2Slider.onValueChanged.RemoveListener(delegate { OnSliderValueChanged(); });
@@ -159,9 +159,9 @@ public class Slider_Puzzle_Controller : MonoBehaviour
 
     public void OnSliderValueChanged()
     {
-       CheckSliderValue();
+        CheckSliderValue();
     }
-    
+
     void winChecker()
     {
         if (N2OSlider.value == N2OCorrect && N2Slider.value == N2Correct && O2Slider.value == O2Correct && H2OSlider.value == H2OCorrect)
@@ -169,9 +169,15 @@ public class Slider_Puzzle_Controller : MonoBehaviour
             winCondition = true;
             light.GetComponent<Image>().sprite = greenLight;
             Debug.Log("Puzzle Solved!");
-            Slider_Puzzle_Canvas.SetActive(false);
-            Crew_Cryo_Door.GetComponent<AutoDoor>().enabled = true;
-            Destroy(Crew_Cryo_Trigger);
+            
+            Invoke("Delay", 2);
         }
+    }
+
+    void Delay()
+    {
+        Slider_Puzzle_Canvas.SetActive(false);
+        Crew_Cryo_Door.GetComponent<AutoDoor>().enabled = true;
+        Destroy(Crew_Cryo_Trigger);
     }
 }
