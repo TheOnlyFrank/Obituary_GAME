@@ -3,7 +3,12 @@ guid: 29e46d8fc62c6f64fb8169f944b4b0d1
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LobbyChairsMAT
+    second: {fileID: 2100000, guid: c2cc55b54bb5151479d5463192ab4129, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

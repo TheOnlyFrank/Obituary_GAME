@@ -3,7 +3,12 @@ guid: 0217ed66b2933344898f80eb4207057c
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: EngineRoomTanksMAT
+    second: {fileID: 2100000, guid: ffe8d58e6695ca243970b12cdce04432, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
