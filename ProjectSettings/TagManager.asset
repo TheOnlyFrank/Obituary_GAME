@@ -34,6 +34,9 @@ TagManager:
   - End_Level
   - Blank_Key
   - Crew_Operation
+  - Unpowered_Comms
+  - Enemyspawning
+  - Sonar_First
   layers:
   - Default
   - TransparentFX
