@@ -3,7 +3,17 @@ guid: a080db487cad8b7479b4ffc9e6249135
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OutdoorsHutsMAT
+    second: {fileID: 2100000, guid: 1ac4ec64121897d4d9d27ee5b84643db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SnowyGroundMAT
+    second: {fileID: 2100000, guid: 347e9a9ba9789d541b74ccb808986247, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
 
 public class Signalis_Puzzle : MonoBehaviour
 {
@@ -198,7 +198,7 @@ public class Signalis_Puzzle : MonoBehaviour
             if (this.tag == "Crew_Cryo")
             {
                 Signalis_Puzzle_Canvas.SetActive(false);
-                Crew_Cryo_Door.GetComponent<AutoDoor>().enabled = true;
+                Crew_Cryo_Door.GetComponent<Door_Controller>().enabled = true;
                 Debug.Log("Crew Cryo Door Unlocked!");
                 Destroy(Crew_Cryo_Trigger);
             }
@@ -207,9 +207,9 @@ public class Signalis_Puzzle : MonoBehaviour
                 if (this.tag == "Reactor")
                 {
                     Signalis_Puzzle_Canvas_2.SetActive(false);
-                    Unpowered_Door.GetComponent<AutoDoor>().enabled = true;
+                    Unpowered_Door.GetComponent<Door_Controller>().enabled = true;
                     Destroy(Directional_Light);
-                    SceneManager.LoadScene("Powered_Lighting", LoadSceneMode.Additive);
+                    //SceneManager.LoadScene("Powered_Lighting", LoadSceneMode.Additive);
                     Debug.Log("Power Restored!");
                     Destroy(Reactor_Trigger);
                 }

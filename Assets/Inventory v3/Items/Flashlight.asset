@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Flashlight
   m_EditorClassIdentifier: 
   itemName: Flashlight
-  description: 
+  description: A handy, shiny torch
   itemIcon: {fileID: 0}
   model: {fileID: 0}
   isStackable: 1

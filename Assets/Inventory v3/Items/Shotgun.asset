@@ -15,6 +15,6 @@ MonoBehaviour:
   itemName: Shotgun
   description: A sturdy, if older model of a folding, lever action shotgun.
   itemIcon: {fileID: 21300000, guid: 85d2958ed78d94a4a919902a93c89274, type: 3}
-  model: {fileID: 0}
+  model: {fileID: 2414294764967370498, guid: abe04b983a521e84abb5cf6b19227d0c, type: 3}
   isStackable: 1
   tooltype: 2

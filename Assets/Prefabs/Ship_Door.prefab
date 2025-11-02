@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6767637371389513448}
   - component: {fileID: 6767637371389513449}
   - component: {fileID: 6767637371389513455}
+  - component: {fileID: 4510512609118564503}
   m_Layer: 0
   m_Name: Ship_Door
   m_TagString: Untagged
@@ -132,3 +133,19 @@ MonoBehaviour:
   delay: 0
   accessDeniedSound: {fileID: 8300000, guid: 320877e487cc14c46b9dd09d7ba5ef84, type: 3}
   isLocked: 0
+--- !u!208 &4510512609118564503
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5848508527346824125}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.753, y: 0.89500004, z: 0.036000002}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.89500004, z: 0}
+  m_TimeToStationary: 0.5

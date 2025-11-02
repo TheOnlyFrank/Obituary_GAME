@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: HealthSpray
   m_EditorClassIdentifier: 
   itemName: Health Spray
+  description: Nothing beats healing old or new wounds
   itemIcon: {fileID: 21300000, guid: 2cfaf766a02ecc3488badba02538139d, type: 3}
+  model: {fileID: 0}
+  isStackable: 1

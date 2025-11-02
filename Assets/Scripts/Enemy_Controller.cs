@@ -20,6 +20,7 @@ public class Enemy_Controller : MonoBehaviour
     public GameObject cannon;
     public GameObject cannonBallPrefab;
     public Transform stationaryCannonBall;
+    public int enemy_Health;
 
     private float initialNavSpeed;
 
@@ -32,7 +33,7 @@ public class Enemy_Controller : MonoBehaviour
 
     void Update()
     {
-        
+
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
         MoveTowards(goal);
         FireCannon();
@@ -47,7 +48,7 @@ public class Enemy_Controller : MonoBehaviour
         {
             navAgent.speed = initialNavSpeed;
         }
-     
+
     }
 
     private void MoveTowards(Transform goal)
@@ -67,22 +68,22 @@ public class Enemy_Controller : MonoBehaviour
 
         {
 
-                    // Instantiate the cannonball at the stationary ball's position
-                    GameObject newCannonBall = Instantiate(cannonBallPrefab, stationaryCannonBall.position, Quaternion.identity);
+            // Instantiate the cannonball at the stationary ball's position
+            GameObject newCannonBall = Instantiate(cannonBallPrefab, stationaryCannonBall.position, Quaternion.identity);
 
-                    // Get the Rigidbody component and apply force
-                    Rigidbody rb = newCannonBall.GetComponent<Rigidbody>();
-                    if (rb != null)
-                    {
-                        rb.AddForce(cannon.transform.forward * launchForce); // Note the negative sign, since we rotated the cannon 180 degrees
-                    }
+            // Get the Rigidbody component and apply force
+            Rigidbody rb = newCannonBall.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddForce(cannon.transform.forward * launchForce); // Note the negative sign, since we rotated the cannon 180 degrees
+            }
 
         }
         Debug.Log("Cooldown Reset!");
         cooldown.StartCoolDown();
         //}
     }
-    
+
     //Rotates enemy toward player even when movement is stopped
     private void RotateTowards(Transform goal)
     {
@@ -90,6 +91,22 @@ public class Enemy_Controller : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+    }
+
+
+
+
+    // Handling damage from ranged attacks
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Ranged"))
+        {
+            enemy_Health = enemy_Health - 1;
+            if (enemy_Health <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
 
 }

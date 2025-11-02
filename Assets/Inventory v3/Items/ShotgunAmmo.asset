@@ -16,6 +16,6 @@ MonoBehaviour:
   description: Scattershot ammunition for the shotgun, useful for clearing areas
     of vermin
   itemIcon: {fileID: 21300000, guid: d794a134d4d6317418ae9346bf5607db, type: 3}
-  model: {fileID: 0}
+  model: {fileID: 6216299186949372490, guid: c31f79d903469ac42ad4e9869fe0e324, type: 3}
   isStackable: 1
   itemQuantity: 6

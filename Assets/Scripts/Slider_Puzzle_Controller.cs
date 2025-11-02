@@ -177,7 +177,7 @@ public class Slider_Puzzle_Controller : MonoBehaviour
     void Delay()
     {
         Slider_Puzzle_Canvas.SetActive(false);
-        Crew_Cryo_Door.GetComponent<AutoDoor>().enabled = true;
+        Crew_Cryo_Door.GetComponent<Door_Controller>().enabled = true;
         Destroy(Crew_Cryo_Trigger);
     }
 }
