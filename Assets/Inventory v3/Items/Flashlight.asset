@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Flashlight
   description: A handy, shiny torch
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 14830b25830ca8844a7de86cc4b92385, type: 3}
   model: {fileID: 0}
   isStackable: 1

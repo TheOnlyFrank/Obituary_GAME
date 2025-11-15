@@ -44,7 +44,7 @@ public class Bridge_Controls : MonoBehaviour
         }
         else
         {
-            Debug.Log("Button Pressed, no card found");
+            Debug.Log("Button Pressed, no Pilot card found");
             //PlayAudioEffect(noCardSound);
         }
     }
@@ -59,14 +59,14 @@ public class Bridge_Controls : MonoBehaviour
         }
         else
         {
-            Debug.Log("Button Pressed, no card found");
+            Debug.Log("Button Pressed, no Co-Pilot card found");
             //PlayAudioEffect(noCardSound);
         }
     }
 
     public void Beacon_Button()
     {
-        if (cP_Card) //&& Pilot_Card)
+        if (cP_Card && P_Card)
         {
             CommsScreen.SetActive(false);
             AirlockScreen.SetActive(true);

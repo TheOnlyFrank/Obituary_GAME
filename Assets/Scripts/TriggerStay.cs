@@ -18,7 +18,7 @@ public class TriggerStay : MonoBehaviour
     
     [SerializeField] GameObject Wire_Puzzle_Canvas;
     [SerializeField] GameObject Slider_Puzzle_Canvas;
-    [SerializeField] GameObject Signalis_Puzzle_Canvas_2;
+    
     [SerializeField] GameObject Computer_Keycards_Canvas;
     [SerializeField] GameObject Bridge_Canvas;
     [SerializeField] GameObject End_Level_Canvas;
@@ -43,7 +43,7 @@ public class TriggerStay : MonoBehaviour
         Airlock_Canvas.SetActive(false);
         CivCryoOp.SetActive(false);
         CrewCryoOp.SetActive(false);
-        Signalis_Puzzle_Canvas_2.SetActive(false);
+        
         Unpowered_Canvas.SetActive(false);
         Computer_Keycards_Canvas.SetActive(false);
         Bridge_Canvas.SetActive(false);
@@ -113,7 +113,7 @@ public class TriggerStay : MonoBehaviour
                                     {
                                         Debug.Log("Interact button pressed");
                                         EPrompt.SetActive(false);
-                                        Signalis_Puzzle_Canvas_2.SetActive(true);
+                                        
                                     }
                                     else
                                     {

@@ -41,9 +41,16 @@ public class Item_Pickup : MonoBehaviour, IInteractable
                 }
                 else
                 {
-                    //if (specificScriptableObject.itemName == "Pistol Ammo")
+                    if (specificScriptableObject.itemName == "Flashlight")
+                    {
+                        GameObject.Find("Player").GetComponent<Inventory_Manager>().has_Flashlight = true;
+                    }
+                    //else
                     //{
-                    //    GameObject.Find("Player").GetComponent<Inventory_Manager>().Pistol_Ammo = specificScriptableObject.itemQuantity;
+                        //if (specificScriptableObject.itemName == "Pistol Ammo")
+                        //{
+                        //    GameObject.Find("Player").GetComponent<Inventory_Manager>().Pistol_Ammo = specificScriptableObject.itemQuantity;
+                        //}
                     //}
                 }
             }
