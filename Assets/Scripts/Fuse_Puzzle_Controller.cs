@@ -12,6 +12,7 @@ public class Fuse_Puzzle_Controller : MonoBehaviour
     
     public GameObject fbTriggers;
     public GameObject comDoorTrigger;
+    public GameObject consoleTrigger;
 
     private int sliderCorrect = 1;
 
@@ -104,6 +105,7 @@ public class Fuse_Puzzle_Controller : MonoBehaviour
     void Delay()
     {
         winDialogue.SetActive(false);
+        consoleTrigger.SetActive(false);
     }
 
     public void AddInteraction(int amount)

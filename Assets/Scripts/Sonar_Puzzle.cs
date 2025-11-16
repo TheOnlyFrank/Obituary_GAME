@@ -12,6 +12,10 @@ public class Sonar_Puzzle : MonoBehaviour
     private List<Collider> colliderList;
     //private LayerMask layerMask;
 
+    public GameObject sonarCanvas;
+    public GameObject consoleTrigger;
+    public GameObject sonarfirstTrigger;
+
     private void Awake()
     {
         sweepTransform = transform.Find("pivot");
@@ -59,5 +63,12 @@ public class Sonar_Puzzle : MonoBehaviour
         //angle = 0 -> 360
         float angleRad = angle * (Mathf.PI/180f);
         return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
+    }
+
+     public void Button()
+    {
+        sonarCanvas.SetActive(false);
+        consoleTrigger.SetActive(true);
+        sonarfirstTrigger.SetActive(false);
     }
 }

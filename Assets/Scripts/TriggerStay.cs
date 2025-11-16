@@ -15,6 +15,8 @@ public class TriggerStay : MonoBehaviour
     public GameObject CivCryoOp;
     public GameObject CrewCryoOp;
     public GameObject Unpowered_Canvas;
+    public GameObject Unpower_ComDoor_Canvas;
+    public GameObject SonarFirst_Canvas;
     
     [SerializeField] GameObject Wire_Puzzle_Canvas;
     [SerializeField] GameObject Slider_Puzzle_Canvas;
@@ -48,6 +50,8 @@ public class TriggerStay : MonoBehaviour
         Computer_Keycards_Canvas.SetActive(false);
         Bridge_Canvas.SetActive(false);
         End_Level_Canvas.SetActive(false);
+        Unpower_ComDoor_Canvas.SetActive(false);
+        SonarFirst_Canvas.SetActive(false);
     }
 
     private void OnTriggerStay(Collider other)
@@ -147,6 +151,14 @@ public class TriggerStay : MonoBehaviour
                                                         End_Level_Canvas.SetActive(true);
                                                         Player.SetActive(false);
                                                     }
+                                                    else
+                                                    {
+                                                        if (other.tag == "Sonar_First")
+                                                        {
+                                                            Debug.Log("Interact button pressed");
+                                                            SonarFirst_Canvas.SetActive(true);
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }
@@ -216,6 +228,22 @@ public class TriggerStay : MonoBehaviour
                                     {
                                         Debug.Log("Player exited trigger");
                                         Bridge_Canvas.SetActive(false);
+                                    }
+                                    else
+                                    {
+                                        if ((other.tag == "Unpowered_Comms"))
+                                        {
+                                            Debug.Log("Player exited trigger");
+                                            Unpower_ComDoor_Canvas.SetActive(false);
+                                        }
+                                        else
+                                        {
+                                            if ((other.tag == "Sonar_First"))
+                                            {
+                                                Debug.Log("Player exited trigger");
+                                                SonarFirst_Canvas.SetActive(false);
+                                            }
+                                        }
                                     }
                                 }
                             }
