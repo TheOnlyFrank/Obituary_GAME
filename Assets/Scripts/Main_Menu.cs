@@ -8,6 +8,7 @@ public class Main_Menu : MonoBehaviour
     public GameObject MainMenu;
     public GameObject CreditsMenu;
     public GameObject StoryMenu;
+    public GameObject ControlsMenu;
     
 
     // Start is called before the first frame update
@@ -34,6 +35,7 @@ public class Main_Menu : MonoBehaviour
         MainMenu.SetActive(false);
         CreditsMenu.SetActive(true);
         StoryMenu.SetActive(false);
+        ControlsMenu.SetActive(false);
     }
 
     public void StoryButton()
@@ -42,6 +44,7 @@ public class Main_Menu : MonoBehaviour
         MainMenu.SetActive(false);
         CreditsMenu.SetActive(false);
         StoryMenu.SetActive(true);
+        ControlsMenu.SetActive(false);
     }
 
     public void MainMenuButton()
@@ -50,6 +53,16 @@ public class Main_Menu : MonoBehaviour
         MainMenu.SetActive(true);
         CreditsMenu.SetActive(false);
         StoryMenu.SetActive(false);
+        ControlsMenu.SetActive(false);
+    }
+
+    public void ControlsMenuButton()
+    {
+        // Show Controls Menu
+        MainMenu.SetActive(false);
+        CreditsMenu.SetActive(false);
+        StoryMenu.SetActive(false);
+        ControlsMenu.SetActive(true);
     }
 
     public void QuitButton()
